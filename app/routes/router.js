@@ -158,7 +158,7 @@ router.post("/cadastro",
         
       router.post("/reset-senha", 
           usuarioController.regrasValidacaoFormNovaSenha,
-        function(req, res){
+          function(req, res){
           usuarioController.resetarSenha(req, res);
       });
         
