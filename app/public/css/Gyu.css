@@ -1,0 +1,619 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Lora:wght@500&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    background-color: rgb(255, 249, 242);
+}
+.container_flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 700px;
+    width: 100%;
+    position: relative;
+}
+.hero{
+    width: 41%;
+    height: 700px;
+    background-color: #D3606E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    font-size: xx-large;
+    color: white;
+    font-weight: 400;
+    gap: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    text-align: center;
+    
+}
+.hero button{
+    background-color: rgba(255, 0, 234, 0);
+    color: white;
+    border: 3px solid #ffffff;
+    border-radius: 30px;
+    width: 160px;
+    height: 60px;
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.1s;
+    font-size: x-large;
+    font-weight: 600;
+  
+}
+
+button:hover{
+    cursor: pointer;
+    transition: 0.1s;
+    transform: scale(1.2);
+    border: none;
+}
+
+
+button:hover a{
+    color: white;
+    text-decoration: none;
+}
+
+button{
+    border: none;
+}
+
+section,footer{
+    padding: 54px 0;
+}
+h1{
+    font-size: 50px;
+}
+p{
+    color: purple;
+}
+.container{
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.btn{
+    background-color: pink;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.1s;
+}
+
+.sobre_button:hover{
+    background-color: #D3606E;
+    transition: 0.1s;
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+nav ul{
+    display: flex;
+    align-items: center;
+}
+nav ul a{
+    color: black;
+    margin: 0 25px;
+    text-transform: uppercase;
+    font-size: 14px;
+    display: block;
+}
+nav ul a:not(.btn)::after{
+    content: "";
+    background-color: pink;
+    height: 3px;
+    width: 0%;
+    display: block;
+    margin: 0 auto;
+    transition: 0.3s;
+    
+}
+nav ul a:hover::after{
+    width: 100%;
+}
+
+nav .menu-icon{
+    cursor: pointer;
+    font-size: 25px;
+    color: #1C10A3;
+    display: none;
+}
+
+nav .close-icon{
+    display: none;
+    font-size: 30px;
+    color: white;
+}
+
+
+
+ /* INICIO DA AREA SOBRE NOS */
+
+img.home3{
+    width: 100%;
+}
+.Sobre .sobre_container{
+    display: flex;
+    align-items: center;
+}
+
+.Sobre .sobre_texto{
+    width: 50%;
+    padding: 0 40px;
+    gap: 20px;
+    display: flex;
+}
+
+.Sobre .sobre_texto h3{
+    font-size: 56px;
+}
+
+.Sobre .sobre_texto p{
+    margin: 5px 0 10px 0;
+    font-size: large;
+}
+
+.Sobre .sobre_texto button{
+    background-color: #EC808D;
+    color: white;
+    border-radius: 10px;
+    height: 50px;
+    width: 140px;
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.1s;
+    border: 0px solid black;
+}
+button a{
+    color: white;
+}
+
+.Sobre .sobre_img{
+    width: 50%;
+}
+
+.Sobre .sobre_img img{
+    width: 100%;
+}
+
+.sobre_texto{
+    flex-direction: column;
+    width: 10vw;
+    gap: 30px;
+    max-width: 700px;
+}
+
+ /* FIM DA AREA SOBRE NOS */
+
+ /* INICIO DA AREA CURSOS */
+
+.container_cursos {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+  
+  }
+  
+  /* Card */
+  .card {
+    width: 300px;
+    height: 550px;
+    margin: 25px;
+    background-color: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
+    transition: 0.3s;
+    padding: 10px;
+  }
+  
+  /* Card Header*/
+  .card-header {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .card-img {
+    min-width: 100%;
+    width: 100%;
+    height: 200px;
+  }
+  
+  .card-hero {
+    width: 100%;
+    height: 700px;
+  }
+  /* Card Body */
+  .card-body {
+    height: auto;
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .card-titulo {
+    font-size: 32px;
+    margin: 15px 0;
+  }
+  
+  .card-texto {
+    font-size: 15px;
+   
+    margin: 0 auto;
+  }
+  
+  /* Card Footer */
+  .card-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10px;
+  }
+  
+  .card-footer button{
+    color: #fff;
+    background-color: #887EFF;
+    border: 0px solid black;
+    padding-top: 0px;
+    text-decoration: none;
+    width: 140px;
+    height: 50px;
+    font-weight: 600;
+    border-radius: 20px;
+    margin-bottom: 50px;
+  }
+
+button:hover{
+    cursor: pointer;
+}
+  
+  .card:hover {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+
+ /* FIM DA AREA CURSOS */
+
+
+/* INICIO EXEMPLOS DE AREAS DE CURSOS */
+
+h3.areas{
+    font-size: 40px;
+    padding-top: 70px;
+    align-items: center;
+    text-align: center;
+}
+
+  .Areas2 .areas2_container{
+    display: flex;
+    align-items: center;
+    padding-top: 30px;
+}
+
+
+.Areas2 .areas2_texto h3{
+    font-size: 56px;
+}
+
+.Areas2 .areas2_texto a{
+    background-color: #EC808D;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.1s;
+}
+.areas2_texto{
+    display: flex;
+    flex-direction: column;
+    width: 10vw;
+    gap: 30px;
+    max-width: 700px;
+    justify-content: center;
+    align-items: center;
+}
+.Areas2 .areas2_img{
+    width: 50%;
+}
+
+.Areas2 .areas2_img img{
+    width: 100%;
+}
+.Areas2 .areas2_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Areas2 .areas2_texto{
+    width: 50%;
+}
+
+.Areas2 .areas2_texto h3{
+    font-size: 56px;
+}
+
+.Areas2 .areas2_texto p{
+    margin: 5px 0 10px 0;
+    font-size: large;
+    width: 50%;
+}
+
+.Areas2 .areas2_texto a{
+    background-color: #EC808D;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.1s;
+}
+
+.Areas2 .areas2_img{
+    width: 50%;
+}
+
+.Areas2 .areas2_img img{
+    width: 100%;
+    padding-left: 40px;
+}
+.Areas .areas_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 50px;
+}
+
+.Areas .areas_texto{
+    width: 50%;
+    padding: 0 40px;
+}
+
+.Areas .areas_texto h3{
+    font-size: 56px;
+}
+
+.Areas .areas_texto p{
+    margin: 5px 0 10px 0;
+}
+
+.Areas .areas_texto button{
+    background-color: #EC808D;
+    color: white;
+    border-radius: 10px;
+    width: 140px;
+    height: 40px;
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.1s;
+    border: none;
+}
+.Areas .areas_img{
+    width: 50%;
+}
+
+.Areas .areas_img img{
+    width: 100%;
+    padding-right: 40px;
+}
+
+.areas_texto{
+    display: flex;
+    flex-direction: column;
+    width: 10vw;
+    margin-left: 10vw;
+    max-width: 500px;
+    gap: 20px;
+    
+}
+
+/* FIM EXEMPLOS DE AREAS DE CURSOS */
+
+
+/* INICIO AREA DE DEPOIMENTOS */
+
+.Depoimentos h3{
+    text-align: center;
+    font-size: 56px;
+}
+
+.Depoimentos p{
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.cards{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.Depoimentos .cards-item{
+    background-color: #887EFF;
+    margin: 15px;
+    border-radius: 14px;
+    text-align: center;
+    width: 350px;
+    transition: 0.3s;
+}
+
+.Depoimentos .cards-item img{
+    border-radius: 100%;
+    width: 80px;
+    display: block;
+    margin: 10px auto;
+}
+
+.Depoimentos .cards-item .nome_user{
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+
+.Depoimentos .cards-item .depoimento_user{
+    font-size: 15px;
+    padding: 0 15px;
+    transition: 0.3s;
+}
+
+.Depoimentos .cards-item .estrela{
+    margin: 15px;
+    border-top: 2px solid gray;
+}
+
+.Depoimentos .cards-item .estrela i{
+    color: white;
+    margin-top: 15px;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.Depoimentos .cards-item:hover{
+    background-color: #D3606E ;
+    margin-top: -5px;
+}
+
+.Depoimentos .cards-item:hover .nome_user,
+.Depoimentos .cards-item:hover .depoimento_user,
+.Depoimentos .cards-item:hover .estrela i{
+    color: white;
+}
+
+/* FIM AREA DE DEPOIMENTOS */
+
+/* INICIO DO RODAPÉ */
+
+.footer{
+    background-color: #887EFF;
+    text-align: center;
+}
+
+.footer i{
+    color: #887EFF;
+    font-size: 19px;
+    background-color: white;
+    padding: 10px;
+    margin: 3px;
+    border-radius: 10px;
+}
+
+.footer p{
+    margin-top: 10px;
+    color: white;
+}
+
+/* INICIO DO RODAPÉ */
+
+.links{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
+}
+.icon{
+    width: 38px;
+}
+/* TAMANHO DE TELA 830PX */
+
+@media(max-width:830px){
+    .ul{
+    position:fixed;
+    top: 0;
+    left: 0;
+    background: purple;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    clip-path: circle(0% at 100% 0);
+    transition: 0.7s;
+    }
+    .ul.open{
+        clip-path: circle(141.4% at 100% 0);
+    }
+    .ul a{
+        margin: 10px 0;
+        font-size: 16px;
+        color: white;
+    }
+    nav .menu-icon{
+        display: block;
+    }
+    nav .close-icon{
+        display: block;
+        position: absolute;
+        top: 46px;
+        right: 28px;
+    }
+
+    img.home3{
+        width: 100%;
+        height: 350px;
+    }
+
+    .Sobre .sobre_texto{
+        margin-top: 10px;
+        padding: 0 20px;
+        order: 1;
+    }
+    .Sobre .sobre_container{
+        flex-direction: column;
+    }
+    .Sobre .sobre_texto h3{
+        font-size: 48px;
+    }
+    .Sobre .sobre_texto, .Sobre .sobre_img{
+        width: 100%;
+    }
+
+    .Areas2 .areas2_texto{
+        margin-top: 10px;
+        padding: 0 20px;
+        order: 1;
+    }
+    .Areas2 .areas2_container{
+        flex-direction: column;
+    }
+    .Areas2 .areas2_texto h3{
+        font-size: 48px;
+    }
+    .Areas2_texto, .Areas2 .areas2_img{
+        width: 100%;
+    }
+
+    .Depoimentos .cards-item{
+        width: 100%;
+    }
+}

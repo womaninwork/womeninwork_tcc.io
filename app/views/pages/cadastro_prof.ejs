@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <!--LINK CSS-->
+    <link rel="stylesheet" href="css/cadastro_prof(2).css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script> 
+
+    <!--INICIO DO FORMULARIO DE CADASTRO-->
+    <title>Formulário</title>
+  </head>
+  <body>
+    <section class="container">
+      <article class="header">
+        <nav class="logo">
+          <nav>
+              <a href="index.html">
+                  <img src="img/imagens.tca/logo2.png" width="158px" height="60px">
+              </a>
+        <h2>Cadastre-se</h2>
+        <nav class="img">
+          <img src="img/imagens.tca/home (1).jpeg" alt="" class="img">
+        </nav>
+          </nav>
+
+      <!--NOME DO USUARIO-->
+      <form action="/action_page.php" method="post" id="form" class="form" >
+        <section class="form-control">
+          <label for="username">Seu nome</label>
+          <input type="text" id="username" placeholder="Digite seu nome"/>
+          <i class="fas fa-exclamation-circle"></i>
+          <i class="fas fa-check-circle"></i>
+          <small>Mensagem de erro</small>
+        </section>
+
+        <!--EMAIL DO USUARIO-->
+        <section class="form-control">
+          <label for="email">Seu email</label>
+          <input type="text" id="email" placeholder="Digite seu email" />
+          <i class="fas fa-exclamation-circle"></i>
+          <i class="fas fa-check-circle"></i>
+          <small>Mensagem de erro</small>
+        </section>
+
+        <!--CPF DO USUARIO-->
+        <form action="/action_page.php" method="post" id="form" class="form" >
+          <section class="form-control">
+            <label for="username">Seu CPF</label>
+            <input type="text" id="username" placeholder="Digite seu CPF"/>
+            <i class="fas fa-exclamation-circle"></i>
+            <i class="fas fa-check-circle"></i>
+            <small>Mensagem de erro</small>
+          </section>
+
+          <!--TELEFONE DO USUARIO-->
+          <form action="/action_page.php" method="post" id="form" class="form" >
+            <section class="form-control">
+              <label for="username">Seu Telefone</label>
+              <input type="text" id="username" placeholder="Digite seu telefone"/>
+              <i class="fas fa-exclamation-circle"></i>
+              <i class="fas fa-check-circle"></i>
+              <small>Mensagem de erro</small>
+            </section>
+
+          <!--GENERO DO USUARIO-->
+        <p>Selecione seu Gênero</p>
+        <input type="radio" id="feminino" name="genero" value="feminino" required>
+        <label for="feminino">Feminino</label>
+        <br>
+        <input type="radio" id="masculino" name="genero" value="masculino" required>
+        <label for="masculino">Masculino</label>
+        <br>
+        <input type="radio" id="outro" name="genero" value="outro" required>
+        <label for="outro">Outro</label>
+        <br><br>
+
+        <section class="form-control">
+        <label for="data_nascimento"><p>Data de Nascimento</p></label>
+        <input type="date" name="data_nascimento" id="data_nascimento" required>
+        </section>
+
+        <!--ESTADO DO USUARIO-->
+        <section class="form-control">
+            <label for="estado">Selecione seu Estado</label>
+                  <select id="estado" name="estado">
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <option value="AP">Amapá</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="BA">Bahia</option>
+                    <option value="CE">Ceará</option>
+                    <option value="AC">Espírito Santo</option>
+                    <option value="AL">Goiás</option>
+                    <option value="AP">Maranhão</option>
+                    <option value="AM">Mato Grosso</option>
+                    <option value="BA">Mato Grosso do sul</option>
+                    <option value="CE">Minas Gerais</option>
+                    <option value="AC">Pará</option>
+                    <option value="AL">Pernambuco</option>
+                    <option value="AP">Piauí</option>
+                    <option value="AM">Rio de Janeiro</option>
+                    <option value="BA">Rio Grande do Norte</option>
+                    <option value="CE">Rio grande do Sul</option>
+                    <option value="AC">Rondônia</option>
+                    <option value="AL">Roraima</option>
+                    <option value="AP">Santa Catarina</option>
+                    <option value="AM">São Paulo</option>
+                    <option value="BA">Sergipe</option>
+                    <option value="CE">Tocantis</option>
+                  </select>
+                  </section>
+
+        <!--ENDEREÇO DO USUARIO-->
+        <section class="form-control">
+        <label for="email">Seu endereço</label>
+        <input type="text" id="endereco" placeholder="Digite seu endereço" />
+        <i class="fas fa-exclamation-circle"></i>
+        <i class="fas fa-check-circle"></i>
+        <small>Mensagem de erro</small>
+        </section>
+
+        <!--SENHA DO USUARIO-->
+        <section class="form-control">
+          <label for="password">Senha</label>
+          <input  type="password"  id="password" placeholder="Digite sua senha"/> 
+          <i class="fas fa-exclamation-circle"></i>
+          <i class="fas fa-check-circle"></i>
+          <small>Mensagem de erro</small>
+        </section>
+
+        <!--CONFIRMAÇAO DE SENHA DO USUARIO-->
+        <section class="form-control">
+          <label for="password-confirmation">Confirme sua senha</label>
+          <input type="password" id="password-confirmation" placeholder="Digite sua senha novamente"/>  
+          <i class="fas fa-exclamation-circle"></i>
+          <i class="fas fa-check-circle"></i>
+          <small>Mensagem de erro</small>
+        </section>
+
+            <!--BOTAO DE ENVIAR-->
+            <button type="submit" href="index.html" >Enviar</button>
+            <a href="cadastro_prof (1).html"></a>
+      </form>
+    </section>
+
+    <!--LINKS JAVASCRIPT-->
+    <script
+      src="https://kit.fontawesome.com/f9e19193d6.js" crossorigin="anonymous"></script>
+
+    <script src="Z:\WIW\cadastro_autônomo\form.js"></script>
+  </body>
+</html>
