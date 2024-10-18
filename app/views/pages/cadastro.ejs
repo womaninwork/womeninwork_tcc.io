@@ -9,56 +9,12 @@
     <title>Cadastre-se</title>
 </head>
 <body>
-
-    <%
-    let msgErro = "";
-    let avisoErro = {"nome_usu":"", "senha_usu":"",nomeusu_usu:"", senha_usu:""};
-    if(listaErros){
-        listaErros.errors.forEach(function(itemErro){
-            if(itemErro.path == "nome_usu"){
-                avisoErro.nome_usu = "erro";
-                msgErro += `* ${itemErro.msg} <br>`;
-            }
-            if(itemErro.path == "senha_usu"){
-                avisoErro.senha_usu = "erro";
-                msgErro += `* ${itemErro.msg} <br>`;
-            }
-            if(itemErro.path == "nomeusu_usu"){
-                avisoErro.nomeusu_usu = "erro";
-                msgErro += `* ${itemErro.msg} <br>`;
-            }
-            if(itemErro.path == "email_usu"){
-                avisoErro.email_usu = "erro";
-                msgErro += `* ${itemErro.msg} <br>`;
-            }
-        })        
-        if(msgErro != ""){
-        %>
- 
-        <script>
-                let msgErro ="<%= msgErro %>"
-                notify("Erro(s) no preenchimento","Verifique o(s) campo(s) <br>  " + msgErro.replace(/&lt;/g,"<").replace(/&gt;/g,">"),
-                 "error", "center", 5000)                        
-            </script>
-        <%
-        }
-    }
-    if (dadosNotificacao) { %>
-        <script>
-                notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "center")
-                if("<%= dadosNotificacao.tipo %>" == "success"){
-                    setTimeout(function(){window.location="/sair"}, 3000)
-                }                        
-        </script>
-    <% } %>
-
-    
     <div class="container">
         <div class="form-image">
     <img src="imagem/undraw_Shopping_re_hdd9.png">
 </div>
 <div class="form">
-    <form action="#">
+    <form action="/cadastro" method="POST" id="registrationForm">
         <div class="form-header">
             <div class="title">
                 <h1>Cadastre-se</h1>
@@ -71,66 +27,36 @@
         <div class="input-group">
             <div class="input-box">
                 <label for="firstname">Primeiro Nome</label>
-                <input id="firstname" type="text" name="firstname" placeholder="Digite seu primeiro nome" required>
+                <input id="firstname" type="text" name="nome_usuario" placeholder="Digite seu primeiro nome" required>
             </div>
 
             <div class="input-box">
                 <label for="lastname">Sobrenome</label>
-                <input id="lastname" type="text" name="lastname" placeholder="Digite seu sobrenome" required>
+                <input id="lastname" type="text" name="sobrenome_usuario" placeholder="Digite seu sobrenome" required>
             </div>
             <div class="input-box">
                 <label for="email">E-mail</label>
-                <input id="email" type="email" name="email" placeholder="Digite seu e-mail" required>
+                <input id="email" type="email" name="email_usuario" placeholder="Digite seu e-mail" required>
             </div>
-
             <div class="input-box">
                 <label for="number">Celular</label>
-                <input id="number" type="tel" name="number" placeholder="(xx) xxxx-xxxx" required>
+                <input id="number" type="tel" name="celular_usuario" placeholder="(xx) xxxx-xxxx" required>
             </div>
 
             <div class="input-box">
                 <label for="password">Senha</label>
-                <input id="password" type="password" name="password" placeholder="Digite sua senha" required>
+                <input id="password" type="password" name="senha_usuario" minlength="6" placeholder="Digite sua senha" required>
             </div>
 
 
             <div class="input-box">
                 <label for="confirmPassword">Confirme sua Senha</label>
-                <input id="confirmPassword" type="password" name="confirmPassword" placeholder="Digite sua senha novamente" required>
+                <input id="confirmPassword" type="password" name="confirmPassword" minlength="6" placeholder="Digite sua senha novamente" required>
             </div>
 
         </div>
-
-        <div class="gender-inputs">
-            <div class="gender-title">
-                <h6>Gênero</h6>
-            </div>
-
-            <div class="gender-group">
-                <div class="gender-input">
-                    <input id="female" type="radio" name="gender">
-                    <label for="female">Feminino</label>
-                </div>
-
-                <div class="gender-input">
-                    <input id="male" type="radio" name="gender">
-                    <label for="male">Masculino</label>
-                </div>
-
-                <div class="gender-input">
-                    <input id="others" type="radio" name="gender">
-                    <label for="others">Outros</label>
-                </div>
-
-                <div class="gender-input">
-                    <input id="none" type="radio" name="gender">
-                    <label for="none">Prefiro não dizer</label>
-                </div>
-            </div>
-        </div>
-
         <div class="continue-button">
-            <button><a href="#">Continuar</a> </button>
+            <button type="submit"><a href="#">Cadastrar</a> </button>
         </div>
     </form>
 </div>
@@ -139,6 +65,7 @@
 <!--LINKS JAVASCRIPT-->
 <script
 src="https://kit.fontawesome.com/f9e19193d6.js" crossorigin="anonymous"></script>
+
 
 <script src="Z:\WIW\cadastro_autônomo\form.js"></script>
 

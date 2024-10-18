@@ -180,5 +180,5 @@ const perfilController = {
         }
     }
     
-    module.exports = usuarioController
+    module.exports = {perfilController}
         
