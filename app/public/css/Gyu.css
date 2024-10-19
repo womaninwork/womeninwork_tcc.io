@@ -295,6 +295,11 @@ button a{
     margin-bottom: 50px;
   }
 
+  .card-footer button a{
+    color: white;
+    text-decoration: none; /* Remove sublinhado */
+}
+
 button:hover{
     cursor: pointer;
 }
