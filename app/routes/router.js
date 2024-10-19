@@ -141,11 +141,6 @@ router.get("/marketing-cursos", function (req, res) {
   res.render("pages/marketing-cursos", { pagina: "marketing-cursos", logado: null });
 });
 
-router.post("/cadastro",
-    usuarioController.regrasValidacaoFormCad,
-    async function (req, res) {
-        usuarioController.cadastrar(req, res);
-    });
     router.get(
         "/perfil",
         verificarUsuAutorizado([1, 2, 3], "pages/restrito"),
@@ -197,22 +192,6 @@ router.get('/tabelas', async (req, res) => {
     }
   });
       
-      router.get("/cadastro", function (req, res) {
-        res.render("pages/cadastro", {
-          listaErros: null,
-          dadosNotificacao: null,
-          valores: { nome_usu: "", nomeusu_usu: "", email_usu: "", senha_usu: "" },
-        });
-      });
-      
-      router.post('/cadastro', [
-        body('nome_usuario').notEmpty().withMessage('Nome é obrigatório.'),
-        body('sobrenome_usuario').notEmpty().withMessage('Sobrenome é obrigatório.'),
-        body('email_usuario').isEmail().withMessage('E-mail inválido.'),
-        body('celular_usuario').isLength({ min: 11, max: 11 }).withMessage('Celular deve ter 11 dígitos.'),
-        body('senha_usuario').isLength({ min: 6 }).withMessage('Senha deve ter pelo menos 6 caracteres.'),
-        body('cpf_usuario').isLength({ min: 11, max: 11 }).withMessage('CPF deve ter 11 dígitos.')
-    ], usuarioController.cadastrar);
       
       router.get(
         "/ativar-conta",
