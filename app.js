@@ -2,7 +2,9 @@ const express = require("express");
 const app = express();
 const env = require("dotenv").config();
 const port = process.env.APP_PORT;
- 
+const { body, validationResult } = require('express-validator');
+
+
 var session = require("express-session");
 app.use(
   session({

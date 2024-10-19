@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `blpkdphhphnmf0o8ikdt`.`usuario` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-select * from usuario
+
 
 
 -- -----------------------------------------------------

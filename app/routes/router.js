@@ -137,6 +137,9 @@ router.get("/cursos", function (req, res) {
 router.get("/sobrenos", function (req, res) {
     res.render("pages/sobrenos", { pagina: "sobrenos", logado: null });
 });
+router.get("/marketing-cursos", function (req, res) {
+  res.render("pages/marketing-cursos", { pagina: "marketing-cursos", logado: null });
+});
 
 router.post("/cadastro",
     usuarioController.regrasValidacaoFormCad,
