@@ -16,27 +16,24 @@ const usuarioController = {
     ],
 
     regrasValidacaoFormCad: [
-        body("nome_usu")
+        body("email_usuario")
           .isLength({ min: 5, max: 35 }).withMessage("O nome de usuário/e-mail deve ter de 5 a 35 caracteres"),
-        body("nomeusu_usu")
+        body("nome_usuario")
           .isLength({ min: 8, max: 45 }).withMessage("Nome de usuário deve ter de 8 a 45 caracteres!")
           .custom(async value => {
-            const nomeUsu = await usuario.findCampoCustom({ 'user_usuario': value });
+            const nomeUsu = await usuario.findCampoCustom({ 'nome_usuario': value });
             if (nomeUsu > 0) {
               throw new Error('Nome de usuário em uso!');
             }
           }),
-        body("email_usu")
+        body("email_usuario")
           .isEmail().withMessage("Digite um e-mail válido!")
           .custom(async value => {
             const emailUsu = await usuario.findCampoCustom({ 'email_usuario': value });
             if (emailUsu > 0) {
               throw new Error('E-mail em uso!');
             }
-          }),
-        body("senha_usu")
-          .isStrongPassword()
-          .withMessage("A senha deve ter no mínimo 8 caracteres (mínimo 1 letra maiúscula, 1 caractere especial e 1 número)")
+          })
       ],
      
   regrasValidacaoPerfil: [
@@ -112,12 +109,11 @@ cadastrar: async (req, res) => {
         email_usuario: req.body.email_usuario,
         celular_usuario: req.body.celular_usuario,
         senha_usuario: bcrypt.hashSync(req.body.senha_usuario, salt),
-        tipo_usuario_id_tipo_usuario: req.body.tipo_usuario_id_tipo_usuario, // Ajuste conforme necessário
-        cursos_id_cursos: req.body.cursos_id_cursos // Ajuste conforme necessário
     };
 
     // Verifica se há erros de validação
     if (!erros.isEmpty()) {
+      console.log(erros);
         return res.render("pages/cadastro", {
             listaErros: erros.array(),
             dadosNotificacao: null,
@@ -126,8 +122,8 @@ cadastrar: async (req, res) => {
     }
 
     try {
-        // Cria o usuário no banco de dados
         await usuario.create(dadosForm);
+
         res.render("pages/cadastro", {
             listaErros: null,
             dadosNotificacao: {
@@ -139,11 +135,6 @@ cadastrar: async (req, res) => {
         });
     } catch (e) {
         console.error(e);
-        res.render("pages/cadastro", {
-            listaErros: [{ msg: "Erro ao cadastrar usuário. Tente novamente." }],
-            dadosNotificacao: null,
-            valores: req.body
-        });
     }
 }
 }
