@@ -70,6 +70,10 @@ p{
     transform: scale(1.2);
 }
 
+.btn:hover{
+    background-color: #eca1aa;
+}
+
 .nav{
     display: flex;
     align-items: center;

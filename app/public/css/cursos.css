@@ -7,13 +7,8 @@
     outline: none;
     font-family: "Poppins", sans-serif;
 }
-/* variables */
-:root {
-    --text-color: #262617;
-    --bg-color: #f7f7f7;
-    --white: #fff;
-    --gradient: linear-gradient(104deg, rgba(253,89,73,1) );
-}
+
+
 body{
     background-color: rgb(255, 249, 242);
 }
@@ -51,7 +46,7 @@ p{
 }
 
 .btn:hover{
-    background-color: #D3606E;
+  background-color: #eca1aa;
 }
 
 
