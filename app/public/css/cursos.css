@@ -9,7 +9,6 @@
 }
 /* variables */
 :root {
-    --blue: #285aeb;
     --text-color: #262617;
     --bg-color: #f7f7f7;
     --white: #fff;
@@ -100,95 +99,98 @@ nav .close-icon{
     row-gap: 30px;
   }
   
-  /* Card */
-  .card {
-    width: 300px;
-    height: 500px;
-    margin: 25px;
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content:flex-start;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
-    transition: 0.3s;
-    padding: 0px;
-  }
-  
-  /* Card Header*/
-  .card-header {
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-    padding: 0px;
-  }
-  
-  .card-img {
-    min-width: 100%;
-    width: auto;
-    height: 100%;
-  }
-  
-  /* Card Body */
-  .card-body {
-    height: 220px;
-    text-align: center;
-    font-family: sans-serif;
-  }
-  .btn1{
-    background-color: rgb(207, 101, 119);
-    height: 40px;
-    color: white;
-    border-radius: 10px;
-    cursor: pointer;
-    border: none;
-    width: 200px;
-    display: inline-block;
-    transition: 0.1s;
-  }
-  .card-titulo {
-    font-size: 29px;
-    margin: 15px 0;
-  }
-  
-  .card-texto {
-    font-size: 15px;
-    width: 280px;
-    margin: 0 auto;
-  }
-  
-  /* Card Footer */
-  .card-footer {
-    margin-top: 30px;
-    text-align: center;
-    background-color: #000;
-    width: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    width: 100%;
-  }
-  
-  .card-footer a {
-    color: #fff;
-    text-decoration: none;
-  }
+  /* INICIO DA AREA CURSOS */
 
-  .card-footer a:hover {
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  /* Cores Cards */
+.container_cursos {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-evenly;
 
-  .card-1 .card-local {
-    color: #2740d1;
-  }
-  .card:hover {
-    transform: scale3d(1.1, 1.1, 1);
-  }
+}
+
+/* Card */
+.card {
+  width: 300px;
+  height: 550px;
+  margin: 25px;
+  background-color: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
+  transition: 0.3s;
+  padding: 10px;
+}
+
+/* Card Header*/
+.card-header {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.card-img {
+  min-width: 100%;
+  width: 100%;
+  height: 200px;
+}
+
+.card-hero {
+  width: 100%;
+  height: 700px;
+}
+/* Card Body */
+.card-body {
+  height: auto;
+  padding: 15px;
+  text-align: center;
+}
+
+.card-titulo {
+  font-size: 32px;
+  margin: 15px 0;
+}
+
+.card-texto {
+  font-size: 15px;
+ 
+  margin: 0 auto;
+}
+
+/* Card Footer */
+.card-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10px;
+}
+
+.card-footer button{
+  color: #fff;
+  background-color: #887EFF;
+  border: 0px solid black;
+  padding-top: 0px;
+  text-decoration: none;
+  width: 140px;
+  height: 50px;
+  font-weight: 600;
+  border-radius: 20px;
+  margin-bottom: 50px;
+}
+
+button:hover{
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale3d(1.1, 1.1, 1);
+}
+
+/* FIM DA AREA CURSOS */
   
   .h2-titulo{
     font-size: 40px;
@@ -235,73 +237,7 @@ section {
     object-position: center;
     border-radius: 50%;
   }
-  .profile-name{
-    font-size: 1rem;
-    font-weight: 500;
-  }
-  .location{
-    font-size: 0.8rem;
-    font-weight: 500;
-  }
-  .info-icon{
-    font-size: 1.4rem;
-    color: var(--text-color);
-    cursor: pointer;
-  }
-  .post-img{
-    width: 100%;
-    height: 500px;
-    object-fit: cover;
-    object-position: center;
-  }
-  .post-botton{
-    display: grid;
-    padding: 10px 15px;
-  }
-  .action-icons{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.7rem
-  }
-  .save-icon{
-    margin: 0 0 0 auto;
-  }
-  .action-icons .bx:hover, .action-icons .bx:hover {
-    font-size: 1.4rem;
-    color: var(--text-color);
-    cursor: pointer;
-  }
-  .likes{
-    display: flex;
-    font-size: 0.82rem;
-    font-weight: 500;
-    padding-top: 10px;
-  }
-  .comment{
-    display: block;
-    align-items: center;
-    font-size: 0.9rem;
-    margin: 0.5rem 0;
-  }
-  .comment a{
-    font-weight: 500;
-    color: var(--text-color);
-    margin-right: 0.5rem;
-  }
-  .hastag{
-    color: var(--blue) ;
-  }
-  .view-more{
-    font-size: 0.9rem;
-    color: #8b8b8b;
-    cursor: pointer;
-  }
-  .post-time{
-    font-size: 0.9rem;
-    color: #8b8b8b;
-    margin-top: 0.5rem;
-  }
+  
   .body-cadastro {
     width: 100%;
     min-height: 15px;
