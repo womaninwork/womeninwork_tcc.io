@@ -100,9 +100,7 @@ router.get("/addItem", function (req, res) {
     });
   });
 
-  router.post(
-    "/cadastro",
-    async function (req, res) {
+  router.post("/cadastro", async function (req, res) {
       usuarioController.cadastrar(req, res);
     }
   );
@@ -138,11 +136,10 @@ router.get("/sobrenos", function (req, res) {
     res.render("pages/sobrenos", { pagina: "sobrenos", logado: null });
 });
 
-router.post("/cadastro",
-    usuarioController.regrasValidacaoFormCad,
+router.post("/cadastro", usuarioController.regrasValidacaoFormCad,
     async function (req, res) {
         usuarioController.cadastrar(req, res);
-    });
+});
     router.get(
         "/perfil",
         verificarUsuAutorizado([1, 2, 3], "pages/restrito"),
