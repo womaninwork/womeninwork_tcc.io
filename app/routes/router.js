@@ -140,6 +140,25 @@ router.get("/marketing-cursos", function (req, res) {
   res.render("pages/marketing-cursos", { pagina: "marketing-cursos", logado: null });
 });
 
+router.get("/pagamento", function (req, res) {
+  res.render("pages/pagamento", { pagina: "pagamento", logado: null });
+});
+
+router.get("/perfil_comum", function (req, res) {
+  res.render("pages/perfil_comum", { pagina: "perfil_comum", logado: null });
+});
+
+router.get("/perfil_prof", function (req, res) {
+  res.render("pages/perfil_prof", { pagina: "perfil_prof", logado: null });
+});
+
+router.get("/home_comum", function (req, res) {
+  res.render("pages/home_comum", { pagina: "home_comum", logado: null });
+});
+
+router.get("/home_prof", function (req, res) {
+  res.render("pages/home_prof", { pagina: "home_prof", logado: null });
+});
 
     router.get(
         "/perfil",
