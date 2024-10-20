@@ -140,6 +140,7 @@ router.get("/marketing-cursos", function (req, res) {
   res.render("pages/marketing-cursos", { pagina: "marketing-cursos", logado: null });
 });
 
+
     router.get(
         "/perfil",
         verificarUsuAutorizado([1, 2, 3], "pages/restrito"),
