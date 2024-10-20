@@ -280,6 +280,12 @@ h3.curso_prof{
     transform: scale3d(1.1, 1.1, 1);
 }
 
+.card-footer button a{
+    color: white;
+    text-decoration: none; /* Remove sublinhado */
+}
+
+
 /* INICIO EXEMPLOS AREA CURSOS */
 
 h3.areas{

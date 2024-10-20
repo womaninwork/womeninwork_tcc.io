@@ -185,6 +185,11 @@ button:hover{
   transform: scale3d(1.1, 1.1, 1);
 }
 
+.card-footer button a{
+  color: white;
+  text-decoration: none; /* Remove sublinhado */
+}
+
 /* FIM DA AREA CURSOS */
   
   .h2-titulo{
