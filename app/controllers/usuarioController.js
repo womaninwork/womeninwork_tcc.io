@@ -1,7 +1,6 @@
 const usuario = require("../models/usuarioModel");
 const { body, validationResult } = require("express-validator");
-const bcrypt = require("bcryptjs");
-var salt = bcrypt.genSaltSync(12);
+const { criptografarSenha, compararSenha } = require("../util/criptografia");
 const { enviarEmail } = require("../util/email");
  
 const usuarioController = {
@@ -15,29 +14,26 @@ const usuarioController = {
             .withMessage("A senha deve ter no mínimo 8 caracteres (mínimo 1 letra maiúscula, 1 caractere especial e 1 número)")
     ],
 
-  regrasValidacaoFormCad: [
-    body("nome_usu")
+    regrasValidacaoFormCad: [
+        body("email_usuario")
           .isLength({ min: 5, max: 35 }).withMessage("O nome de usuário/e-mail deve ter de 5 a 35 caracteres"),
-          body("nomeusu_usu")
+        body("nome_usuario")
           .isLength({ min: 8, max: 45 }).withMessage("Nome de usuário deve ter de 8 a 45 caracteres!")
           .custom(async value => {
-              const nomeUsu = await usuarioModel.findCampoCustom({ 'user_usuario': value });
-              if (nomeUsu > 0) {
-                  throw new Error('Nome de usuário em uso!');
-              }
+            const nomeUsu = await usuario.findCampoCustom({ 'nome_usuario': value });
+            if (nomeUsu > 0) {
+              throw new Error('Nome de usuário em uso!');
+            }
           }),
-      body("email_usu")
+        body("email_usuario")
           .isEmail().withMessage("Digite um e-mail válido!")
           .custom(async value => {
-              const nomeUsu = await usuarioModel.findCampoCustom({ 'email_usuario': value });
-              if (nomeUsu > 0) {
-                  throw new Error('E-mail em uso!');
-              }
-          }),
-      body("senha_usu")
-          .isStrongPassword()
-          .withMessage("A senha deve ter no mínimo 8 caracteres (mínimo 1 letra maiúscula, 1 caractere especial e 1 número)")
-  ],
+            const emailUsu = await usuario.findCampoCustom({ 'email_usuario': value });
+            if (emailUsu > 0) {
+              throw new Error('E-mail em uso!');
+            }
+          })
+      ],
      
   regrasValidacaoPerfil: [
     body("nome_usu")
@@ -101,32 +97,43 @@ regrasValidacaoFormNovaSenha: [
     }
 },
  
- 
-  cadastrar: (req, res) => {
+cadastrar: async (req, res) => {
+    // Coleta os erros de validação
     const erros = validationResult(req);
-    var dadosForm = {
-        user_usuario: req.body.nomeusu_usu,
-        senha_usuario: bcrypt.hashSync(req.body.senha_usu, salt),
-        nome_usuario: req.body.nome_usu,
-        email_usuario: req.body.email_usu,
+
+    // Cria o objeto de dados do formulário
+    const dadosForm = {
+        nome_usuario: req.body.nome_usuario,
+        sobrenome_usuario: req.body.sobrenome_usuario,
+        email_usuario: req.body.email_usuario,
+        celular_usuario: req.body.celular_usuario,
+        senha_usuario: criptografarSenha(req.body.senha_usuario),
     };
+
+    // Verifica se há erros de validação
     if (!erros.isEmpty()) {
-        return res.render("pages/cadastro", { listaErros: erros, dadosNotificacao: null, valores: req.body })
+      console.log(erros);
+        return res.render("pages/cadastro", {
+            listaErros: erros.array(),
+            dadosNotificacao: null,
+            valores: req.body
+        });
     }
+
     try {
-        let create = usuario.create(dadosForm);
+        await usuario.create(dadosForm);
+
         res.render("pages/cadastro", {
-            listaErros: null, dadosNotificacao: {
-                titulo: "Cadastro realizado!", mensagem: "Novo usuário criado com sucesso!", tipo: "success"
-            }, valores: req.body
-        })
+            listaErros: null,
+            dadosNotificacao: {
+                titulo: "Cadastro realizado!",
+                mensagem: "Novo usuário criado com sucesso!",
+                tipo: "success"
+            },
+            valores: req.body
+        });
     } catch (e) {
-        console.log(e);
-        res.render("pages/cadastro", {
-            listaErros: erros, dadosNotificacao: {
-                titulo: "Erro ao cadastrar!", mensagem: "Verifique os valores digitados!", tipo: "error"
-            }, valores: req.body
-        })
+        console.error(e);
     }
 }
 }

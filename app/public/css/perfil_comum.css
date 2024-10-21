@@ -11,6 +11,7 @@
 body{
     background-color: rgb(255, 249, 242);
 }
+
 .container_flex{
     display: flex;
     align-items: center;
@@ -19,7 +20,41 @@ body{
     width: 100%;
     position: relative;
 }
+.hero{
+    width: 41%;
+    height: 700px;
+    background-color: #D3606E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    font-size: xx-large;
+    color: white;
+    font-weight: 400;
+    gap: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    text-align: center;
+    
+}
 
+.hero button{
+    background-color: rgba(255, 0, 234, 0);
+    color: white;
+    border: 3px solid #ffffff;
+    border-radius: 30px;
+    width: 160px;
+    height: 60px;
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.1s;
+    font-size: x-large;
+    font-weight: 600;
+  
+}
 
 button:hover{
     cursor: pointer;
@@ -44,10 +79,8 @@ section,footer{
 h1{
     font-size: 50px;
 }
-p{
-    color: purple;
-}
-.container{
+
+.container_perfil{
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 5%;
@@ -68,10 +101,6 @@ p{
     transition: 0.1s;
     cursor: pointer;
     transform: scale(1.2);
-}
-
-.btn:hover{
-    background-color: #eca1aa;
 }
 
 .nav{
@@ -121,18 +150,132 @@ nav .close-icon{
 }
 
 .usuario{
-    width: 20px;
+    width: 33px;
+    height: 30px;
 }
 
-.banner {
-    background-image: url(Z:/home_prof/img/home_prof.jpg);
-    background-repeat: no-repeat;
-    background-size: 100%;
-    height: 800px;
-    border-bottom: 10px solid pink;
+
+#picture__input {
+    display: none;
+  }
+  
+  .picture {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    position: center;
+    aspect-ratio: 16/9;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: sans-serif;
+    transition: color 300ms ease-in-out, background 300ms ease-in-out;
+    outline: none;
+    overflow: hidden;
+  }
+  
+  .picture:hover {
+    color: #777;
+    background: #ccc;
+  }
+  
+  .picture:active {
+    background: #eee;
+  }
+  
+  .picture:focus {
+    color: #777;
+    background: #ccc;
+  }
+  
+  .picture__img {
+    position: center;
+    max-width: 100%;
+  }
+
+.container_perfil {
+    width: 80%;
+    position: center;
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    align-items: center;
+   
 }
 
-h3.curso_prof{
+h1 {
+    margin: 10px 0;
+}
+
+h2 {
+    margin-top: 20px;
+}
+
+.profile-details {
+    margin-top: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    background: #e2e2e2;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+a {
+    color: #D3606E;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #000000;
+}
+
+.link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
+}
+.icon{
+    width: 38px;
+}
+
+.container_perfil {
+    text-align: center;
+}
+
+.follow-button {
+    background-color: #EC808D;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.follow-button:hover {
+    background-color: #b44d59;
+    transform: scale(1.05);
+}
+
+.follow-button:active {
+    transform: scale(0.95);
+}
+
+h3.areas{
     font-size: 40px;
     padding-top: 70px;
     align-items: center;
@@ -220,116 +363,18 @@ h3.curso_prof{
     margin-bottom: 50px;
   }
 
+  .card-footer button a{
+    color: #fff;
+    text-decoration: none;
+  }
+
 button:hover{
     cursor: pointer;
 }
   
   .card:hover {
     transform: scale3d(1.1, 1.1, 1);
-}
-
-.card-footer button a{
-    color: white;
-    text-decoration: none; /* Remove sublinhado */
-}
-
-main.cards {
-    display: flex;
-    padding: 32px;
-    justify-content: center;
-}
-
-main.cards section.card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background: rgb(233, 231, 231);
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    max-height: 240px;
-    margin-left: 32px;
-}
-
-main.cards section.card:first-child {
-    margin-left: 0;
-}
-
-main.cards section.card .icon {
-    width: 64px;
-    height: 64px;
-}
-
-main.cards section.card img {
-    width: 100%;
-    border-radius: 50%;
-}
-
-main.cards section.card h3 {
-    font-size: 100%;
-    margin: 16px 0;
-}
-
-main.cards section.card span {
-    font-weight: 300;
-    max-width: 240px;
-    font-size: 80%;
-    margin-bottom: 16px;
-}
-
-main.cards section.card button {
-    padding: 0.5rem 1rem;
-    text-transform: uppercase;
-    border-radius: 32px;
-    border: 0;
-    cursor: pointer;
-    font-size: 80%;
-    font-weight: 500;
-    color: #fff;
-    margin-bottom: 16px 0;
-}
-
-main.cards section.card.contact button {
-    background: linear-gradient(to right, #1c10a3, #DFCBFF);
-}
-main.cards section.card.shop button {
-    background: linear-gradient(to right, #D3606E, #FFC1D5);
-}
-main.cards section.card.about button {
-    background: linear-gradient(to right, #1c10a3, #DFCBFF);
-}
-
-main.cards section.card.contact {
-    box-shadow: 20px 20px 50px -30px #DBC4FF;
-}
-main.cards section.card.shop {
-    box-shadow: 20px 20px 50px -30px #AFD6FF;
-}
-main.cards section.card.about {
-    box-shadow: 20px 20px 50px -30px #FFC1D5;
-}
-
-@media screen and (max-width: 720px) {
-    main.cards {
-        flex-direction: column;
-    }
-
-    main.cards section.card {
-        margin-left: 0;
-        margin-bottom: 32px;
-    }
-
-    main.cards section.card:last-child {
-        margin-bottom: 0;
-    }
-
-    main.cards section.card button {
-        font-size: 70%;
-    }
-
-}
-
-/* INICIO DO RODAPÉ */
+  }
 
 .footer{
     background-color: #887EFF;
@@ -348,17 +393,4 @@ main.cards section.card.about {
 .footer p{
     margin-top: 10px;
     color: white;
-}
-
-/* INICIO DO RODAPÉ */
-
-.links{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    gap: 20px;
-}
-.icon{
-    width: 38px;
 }

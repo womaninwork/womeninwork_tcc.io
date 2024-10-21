@@ -12,6 +12,8 @@ const {
 const { usuarioController } = require("../controllers/usuarioController");
 const { carrinhoController } = require("../controllers/carrinhoController");
 const { hqController } = require("../controllers/hqController");
+const { body } = require('express-validator');
+
 
 const uploadFile = require("../util/uploader")("./app/public/imagem/perfil/");
 // const uploadFile = require("../util/uploader")();
@@ -81,22 +83,39 @@ router.get("/addItem", function (req, res) {
     }
   );
   
-  router.get("/cadastro", function (req, res) {
+  router.get("/cadastro", (req, res) => {
+    // Renderiza a página de cadastro
     res.render("pages/cadastro", {
-      listaErros: null,
-      dadosNotificacao: null,
-      valores: { nome_usu: "", nomeusu_usu: "", email_usu: "", senha_usu: "" },
+      listaErros: null,  // Não há erros a serem exibidos inicialmente
+      dadosNotificacao: null,  // Não há notificações a serem exibidas
+      valores: { 
+        nome_usu: "",        // Valor inicial para o nome do usuário
+        nomeusu_usu: "",     // Valor inicial para o nome de usuário
+        email_usu: "",       // Valor inicial para o e-mail
+        senha_usu: "",       // Valor inicial para a senha
+        celular_usu: "",     // Valor inicial para o celular (se necessário)
+        tipo_usuario_id_tipo_usuario: "",  // Valor inicial para o tipo de usuário (se aplicável)
+        cursos_id_cursos: "" // Valor inicial para o curso (se aplicável)
+      }
     });
   });
-  
-  router.post(
-    "/cadastro",
-    usuarioController.regrasValidacaoFormCad,
-    async function (req, res) {
+
+  router.post("/cadastro", async function (req, res) {
       usuarioController.cadastrar(req, res);
     }
   );
+  router.get("/usuarios", async (req, res) => {
+    try {
+      // Buscar todos os usuários do banco de dados
+      const usuarios = await usuarioController.findAll();
   
+      // Renderizar a página de listagem de usuários
+      res.render("pages/usuarios", { usuarios });  // Passa os dados de usuários para o template
+    } catch (error) {
+      console.error("Erro ao buscar usuários: ", error);
+      res.status(500).send("Erro interno do servidor.");
+    }
+  });
   router.get(
     "/adm",
     verificarUsuAutenticado,
@@ -117,11 +136,30 @@ router.get("/sobrenos", function (req, res) {
     res.render("pages/sobrenos", { pagina: "sobrenos", logado: null });
 });
 
-router.post("/cadastro",
-    usuarioController.regrasValidacaoFormCad,
-    async function (req, res) {
-        usuarioController.cadastrar(req, res);
-    });
+router.get("/marketing-cursos", function (req, res) {
+  res.render("pages/marketing-cursos", { pagina: "marketing-cursos", logado: null });
+});
+
+router.get("/pagamento", function (req, res) {
+  res.render("pages/pagamento", { pagina: "pagamento", logado: null });
+});
+
+router.get("/perfil_comum", function (req, res) {
+  res.render("pages/perfil_comum", { pagina: "perfil_comum", logado: null });
+});
+
+router.get("/perfil_prof", function (req, res) {
+  res.render("pages/perfil_prof", { pagina: "perfil_prof", logado: null });
+});
+
+router.get("/home_comum", function (req, res) {
+  res.render("pages/home_comum", { pagina: "home_comum", logado: null });
+});
+
+router.get("/home_prof", function (req, res) {
+  res.render("pages/home_prof", { pagina: "home_prof", logado: null });
+});
+
     router.get(
         "/perfil",
         verificarUsuAutorizado([1, 2, 3], "pages/restrito"),
@@ -173,21 +211,6 @@ router.get('/tabelas', async (req, res) => {
     }
   });
       
-      router.get("/cadastro", function (req, res) {
-        res.render("pages/cadastro", {
-          listaErros: null,
-          dadosNotificacao: null,
-          valores: { nome_usu: "", nomeusu_usu: "", email_usu: "", senha_usu: "" },
-        });
-      });
-      
-      router.post(
-        "/cadastro",
-        usuarioController.regrasValidacaoFormCad,
-        async function (req, res) {
-          usuarioController.cadastrar(req, res);
-        }
-      );
       
       router.get(
         "/ativar-conta",

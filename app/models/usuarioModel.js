@@ -1,5 +1,5 @@
 var pool = require("../../config/pool_conexoes");
-
+const bcrypt = require("bcryptjs");
 
     const usuarioModel = {
         findAll: async () => {
@@ -61,15 +61,22 @@ var pool = require("../../config/pool_conexoes");
 
         create: async (camposForm) => {
             try {
+                const senhaHash = await bcrypt.hash(camposForm.senha_usuario, 12); 
+                camposForm.senha_usuario = senhaHash;
+    
+                // Remover o campo confirmPassword (não deve ser salvo no banco)
+                // Inserção no banco de dados
                 const [resultados] = await pool.query(
-                    "insert into usuario set ?", [camposForm]
-                )
-                return resultados;
+                    "INSERT INTO usuario SET ?", [camposForm]
+                );
+                console.log("Usuário inserido com sucesso!");
+                return resultados;  // Retorna os resultados da query
             } catch (error) {
                 console.log(error);
                 return null;
             }
         },
+    
 
         update: async (camposForm, id) => {
             try {

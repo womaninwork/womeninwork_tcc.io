@@ -67,16 +67,14 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `blpkdphhphnmf0o8ikdt`.`usuario` (
   `id_usuario` INT(11) NOT NULL,
-  `cpf_usuario` CHAR(11) NOT NULL,
+  `nome_usuario` VARCHAR(70) NOT NULL,
   `email_usuario` VARCHAR(35) NOT NULL,
   `celular_usuario` CHAR(11) NOT NULL,
-  `senha_usuario` VARCHAR(7) NOT NULL,
-  `data_nasc_usuario` DATE NOT NULL,
-  `nome_usuario` VARCHAR(70) NOT NULL,
+  `senha_usuario` VARCHAR(10) NOT NULL,
+  `sobrenome_usuario` VARCHAR(70) NOT NULL,
   `tipo_usuario_id_tipo_usuario` INT(11) NOT NULL,
   `cursos_id_cursos` INT(11) NOT NULL,
   PRIMARY KEY (`id_usuario`),
-  UNIQUE INDEX `cpf_usuario_UNIQUE` (`cpf_usuario` ASC) VISIBLE,
   UNIQUE INDEX `id_usuario_UNIQUE` (`id_usuario` ASC) VISIBLE,
   UNIQUE INDEX `email_usuario_UNIQUE` (`email_usuario` ASC) VISIBLE,
   UNIQUE INDEX `senha_usuario_UNIQUE` (`senha_usuario` ASC) VISIBLE,
@@ -87,6 +85,8 @@ CREATE TABLE IF NOT EXISTS `blpkdphhphnmf0o8ikdt`.`usuario` (
     REFERENCES `blpkdphhphnmf0o8ikdt`.`tipo_usuario` (`id_tipo_usuario`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
+
+select * from usuario
 
 
 -- -----------------------------------------------------
