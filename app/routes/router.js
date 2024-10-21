@@ -140,6 +140,10 @@ router.get("/marketing-cursos", function (req, res) {
   res.render("pages/marketing-cursos", { pagina: "marketing-cursos", logado: null });
 });
 
+router.get("/design_grafico", function (req, res) {
+  res.render("pages/design_grafico", { pagina: "design_grafico", logado: null });
+});
+
 router.get("/pagamento", function (req, res) {
   res.render("pages/pagamento", { pagina: "pagamento", logado: null });
 });
