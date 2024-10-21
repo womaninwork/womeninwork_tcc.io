@@ -147,6 +147,10 @@ router.get("/design_grafico", function (req, res) {
   res.render("pages/design_grafico", { pagina: "design_grafico", logado: null });
 });
 
+router.get("/fotografia", function (req, res) {
+  res.render("pages/fotografia", { pagina: "fotografia", logado: null });
+});
+
 router.get("/pagamento", function (req, res) {
   res.render("pages/pagamento", { pagina: "pagamento", logado: null });
 });
