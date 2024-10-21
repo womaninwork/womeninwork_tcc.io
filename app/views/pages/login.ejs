@@ -12,39 +12,118 @@
 </head>
 <body>
 
-    <%
-            let avisoErro = {"nome_usu":"", "senha_usu":""}
-            let msgErro = ""
-                if(listaErros){
-                    listaErros.errors.forEach(function(itemErro){
-                        if(itemErro.path == "nome_usu"){
-                            avisoErro.nome_usu = "erro";
-                            msgErro += `* ${itemErro.msg} <br>`
-                        }
-                        if(itemErro.path == "senha_usu"){
-                            avisoErro.senha_usu = "erro";
-                            msgErro += `* ${itemErro.msg} <br>`
-                        }
-                    })
-                    if(msgErro != ""){
-                    %>
-                        <script>
-                            let msgErro ="<%= msgErro %>"
-                            notify("Erro(s) no preenchimento",
-                                   "Verifique o(s) campo(s) <br> " + msgErro.replace(/&lt;/g,"<").replace(/&gt;/g,">"),
-                                   "error", "center", 5000)                        
-                        </script>
-                    <%
-                    }
-                }
-                if (dadosNotificacao) { %>
-                    <script>
-                            notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "center")
-                            if("<%= dadosNotificacao.tipo %>" == "success"){
-                                setTimeout(function(){window.location="/"}, 3000)
-                            }                        
-                    </script>
-                <% } %>
+    <title>Login</title>
+  </head>
+  <body>
+    <section class="signin-area signin-one">
+      <div class="container">
+        <a href="/">
+          <img src="imagem/imagens.tca/logo2.png" width="158px" height="60px">
+        </a>
+        <h1>Login</h1>
+        <div class="row justify-content-center">
+          <div class="col-lg-5">
+            <form action="/register" method="post" id="validationForm">
+              <div class="signin-form form-style-two rounded-buttons">
+                <div class="row">
+                  <div class="col-md-12">
+                    <label for="validationServer01" class="form-label">Nome</label>
+                    <input type="text" class="form-control" id="validationServer01" name="nome" required>
+                    <div class="valid-feedback">Perfeito!</div>
+                  </div>
+                  <div class="col-md-12">
+                    <label for="validationServerUsername" class="form-label">Email</label>
+                    <div class="input-group has-validation">
+                      <input type="text" class="form-control" id="validationServerUsername" name="email" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
+                      <div id="validationServerUsernameFeedback" class="invalid-feedback">Coloque seu e-mail</div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-input">
+                      <label for="validationPassword" class="form-label">Senha</label>
+                      <div class="input-items default">
+                        <input type="password" id="validationPassword"  aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" class="form-control" name="senha" required/>
+                        <i class="lni lni-key"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6"></div>
+                  <div class="col-md-6">
+                    <div class="form-input rounded-buttons">
+                      <button class="btn primary-btn-outline rounded-full" type="button"  id="submitButton">Cadastrar-se</button>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-input text-center">
+                      <p class="text">Veja <a href="javascript:void(0)">os termos de privacidade</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://kit.fontawesome.com/f9e19193d6.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script>
+       (function() {
+      'use strict';
+
+      let form = document.getElementById('validationForm');
+      let nomeInput = document.getElementById('validationServer01');
+      let emailInput = document.getElementById('validationServerUsername');
+      let passwordInput = document.getElementById('validationPassword');
+      let submitButton = document.getElementById('submitButton');
+
+      submitButton.addEventListener('click', function(event) {
+        if (validateForm()) {
+          form.submit();
+        }
+      });
+
+      function validateForm() {
+        let isValid = true;
+
+        // Validação do nome
+        if (nomeInput.value.trim() === '') {
+          isValid = false;
+          nomeInput.classList.add('is-invalid');
+          nomeInput.classList.remove('is-valid');
+        } else {  
+          nomeInput.classList.remove('is-invalid');
+          nomeInput.classList.add('is-valid');
+        }
+     
+        // Validação do email
+        let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(emailInput.value)) {
+          isValid = false;
+          emailInput.classList.add('is-invalid');
+          emailInput.classList.remove('is-valid');
+        } else {
+          emailInput.classList.remove('is-invalid');
+          emailInput.classList.add('is-valid');
+        }
+
+        // Validação da senha
+        if (passwordInput.value.length < 8) {
+          window.alert('Coloque uma senha com 8 caracteres ou mais');
+          isValid = false;
+          passwordInput.classList.add('is-invalid');
+          passwordInput.classList.remove('is-valid');
+        } else {
+          passwordInput.classList.remove('is-invalid');
+          passwordInput.classList.add('is-valid');
+        }
+
+        return isValid;
+      }
+    })();
+    </script>
 
 </body>
 </html>
