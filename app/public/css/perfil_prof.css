@@ -150,7 +150,8 @@ nav .close-icon{
 }
 
 .usuario{
-    width: 20px;
+    width: 33px;
+    height: 30px;
 }
 
 
@@ -350,7 +351,6 @@ h3.areas{
   
   .card-texto {
     font-size: 15px;
-   
     margin: 0 auto;
   }
   
@@ -375,6 +375,11 @@ h3.areas{
     margin-bottom: 50px;
   }
 
+  .card-footer button a{
+    color: #fff;
+    text-decoration: none;
+  }
+  
 button:hover{
     cursor: pointer;
 }

@@ -191,9 +191,11 @@ nav .close-icon{
     display: inline-block;
     transition: 0.1s;
     border: 0px solid black;
+    
 }
 button a{
     color: white;
+    text-decoration: none;
 }
 
 .Sobre .sobre_img{
@@ -339,6 +341,7 @@ h3.areas{
     cursor: pointer;
     display: inline-block;
     transition: 0.1s;
+    text-decoration: none;
 }
 .areas2_texto{
     display: flex;
@@ -384,6 +387,7 @@ h3.areas{
     cursor: pointer;
     display: inline-block;
     transition: 0.1s;
+    text-decoration: none;
 }
 
 .Areas2 .areas2_img{
@@ -442,6 +446,11 @@ h3.areas{
     max-width: 500px;
     gap: 20px;
     
+}
+
+.areas_texto a{
+    color: #fff;
+    text-decoration: none;
 }
 
 /* FIM EXEMPLOS DE AREAS DE CURSOS */
