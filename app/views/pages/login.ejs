@@ -106,8 +106,8 @@
         }
 
         // Validação da senha
-        if (passwordInput.value.length < 8) {
-          window.alert('Coloque uma senha com 8 caracteres ou mais');
+        if (passwordInput.value.length < 5) {
+          window.alert('Coloque uma senha com 5 caracteres ou mais');
           isValid = false;
           passwordInput.classList.add('is-invalid');
           passwordInput.classList.remove('is-valid');
