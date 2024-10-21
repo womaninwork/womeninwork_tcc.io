@@ -1,7 +1,6 @@
 const usuario = require("../models/usuarioModel");
 const { body, validationResult } = require("express-validator");
-const bcrypt = require("bcryptjs");
-var salt = bcrypt.genSaltSync(12);
+const { criptografarSenha, compararSenha } = require("../util/criptografia");
 const { enviarEmail } = require("../util/email");
  
 const usuarioController = {
@@ -108,7 +107,7 @@ cadastrar: async (req, res) => {
         sobrenome_usuario: req.body.sobrenome_usuario,
         email_usuario: req.body.email_usuario,
         celular_usuario: req.body.celular_usuario,
-        senha_usuario: bcrypt.hashSync(req.body.senha_usuario, salt),
+        senha_usuario: criptografarSenha(req.body.senha_usuario),
     };
 
     // Verifica se há erros de validação

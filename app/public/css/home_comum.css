@@ -280,6 +280,12 @@ h3.curso_prof{
     transform: scale3d(1.1, 1.1, 1);
 }
 
+.card-footer button a{
+    color: white;
+    text-decoration: none; /* Remove sublinhado */
+}
+
+
 /* INICIO EXEMPLOS AREA CURSOS */
 
 h3.areas{
@@ -419,6 +425,7 @@ h3.areas{
 .Depoimentos p{
     margin-bottom: 20px;
     text-align: center;
+    color: rgb(21, 2, 71);
 }
 
 .cards{
@@ -458,7 +465,7 @@ h3.areas{
 
 .Depoimentos .cards-item .estrela{
     margin: 15px;
-    border-top: 2px solid gray;
+    border-top: 2px solid rgb(199, 199, 199);
 }
 
 .Depoimentos .cards-item .estrela i{

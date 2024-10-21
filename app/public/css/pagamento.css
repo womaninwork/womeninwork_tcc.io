@@ -8,6 +8,12 @@
   text-transform: capitalize;
   transition: all .2s linear;
 }
+body {
+  background-image: url('imagem/pagamento.png'); /* Caminho da sua imagem */
+  background-size: cover; /* Ajusta a imagem para cobrir o fundo */
+  background-position: center; /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Evita repetição */
+}
 
 .container{
   display: flex;
@@ -15,7 +21,7 @@
   align-items: center;
   padding:25px;
   min-height: 100vh;
-  background: #d3606e;
+  background: #ec808d;
 }
 
 .container form{

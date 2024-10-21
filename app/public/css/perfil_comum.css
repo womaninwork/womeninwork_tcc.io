@@ -150,29 +150,60 @@ nav .close-icon{
 }
 
 .usuario{
-    width: 20px;
+    width: 33px;
+    height: 30px;
 }
 
-.container_perfil {
-    width: 80%;
-    max-width: 800px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-   
-}
 
-.profile-header {
-    text-align: center;
-    margin-bottom: 20px;
-    position: center;
-}
-
-.profile-picture {
+#picture__input {
+    display: none;
+  }
+  
+  .picture {
     border-radius: 50%;
     width: 150px;
     height: 150px;
     position: center;
+    aspect-ratio: 16/9;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: sans-serif;
+    transition: color 300ms ease-in-out, background 300ms ease-in-out;
+    outline: none;
+    overflow: hidden;
+  }
+  
+  .picture:hover {
+    color: #777;
+    background: #ccc;
+  }
+  
+  .picture:active {
+    background: #eee;
+  }
+  
+  .picture:focus {
+    color: #777;
+    background: #ccc;
+  }
+  
+  .picture__img {
+    position: center;
+    max-width: 100%;
+  }
+
+.container_perfil {
+    width: 80%;
+    position: center;
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    align-items: center;
+   
 }
 
 h1 {
@@ -330,6 +361,11 @@ h3.areas{
     font-weight: 600;
     border-radius: 20px;
     margin-bottom: 50px;
+  }
+
+  .card-footer button a{
+    color: #fff;
+    text-decoration: none;
   }
 
 button:hover{
