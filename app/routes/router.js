@@ -175,6 +175,10 @@ router.get("/aula", function (req, res) {
   res.render("pages/aula", { pagina: "aula", logado: null });
 });
 
+router.get("/curso_logado", function (req, res) {
+  res.render("pages/curso_logado", { pagina: "curso_logado", logado: null });
+});
+
     router.get(
         "/perfil",
         verificarUsuAutorizado([1, 2, 3], "pages/restrito"),

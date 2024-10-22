@@ -1,3 +1,7 @@
+body{
+    background-color: #EC808D;
+}
+
 .Areas2 .areas2_container{
     display: flex;
     align-items: center;
