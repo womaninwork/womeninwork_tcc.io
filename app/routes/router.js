@@ -104,6 +104,7 @@ router.get("/addItem", function (req, res) {
       usuarioController.cadastrar(req, res);
     }
   );
+  
   router.get("/usuarios", async (req, res) => {
     try {
       // Buscar todos os usuários do banco de dados
