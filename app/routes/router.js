@@ -180,6 +180,10 @@ router.get("/curso_logado", function (req, res) {
   res.render("pages/curso_logado", { pagina: "curso_logado", logado: null });
 });
 
+router.get("/escolha_user", function (req, res) {
+  res.render("pages/escolha_user", { pagina: "escolha_user", logado: null });
+});
+
     router.get(
         "/perfil",
         verificarUsuAutorizado([1, 2, 3], "pages/restrito"),
