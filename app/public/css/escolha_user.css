@@ -165,7 +165,12 @@ nav .close-icon{
 }
 
 
-
+h3.areas{
+    font-size: 40px;
+    padding-top: 70px;
+    align-items: center;
+    text-align: center;
+}
 .container2 {
     display: flex;
     justify-content: center;
