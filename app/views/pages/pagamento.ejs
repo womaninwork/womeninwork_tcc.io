@@ -1,63 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- custom css file link  -->
-    <link rel="stylesheet" href="/css/pagamento.css">
+	<meta charset="UTF-8">
+	<title>Pagamento</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css">
+	<link rel="stylesheet" href="/css/pagamento.css">
 
 </head>
 <body>
-   
-<div class="container">
 
-    <form action="">
-
-        <div class="row">
-
-            <div class="col">
-
-                <h3 class="title">Pagamento</h3>
-
-                <div class="inputBox">
-                    <span>Cartões Aceitos:</span>
-                    <img src="imagem/card_img.png" alt="">
-                </div>
-                <div class="inputBox">
-                    <span>Nome do Cartão:</span>
-                    <input type="text" placeholder="insira o nome do cartão">
-                </div>
-                <div class="inputBox">
-                    <span>Número do Cartão:</span>
-                    <input type="number" placeholder="insira o número do cartão">
-                </div>
-                <div class="inputBox">
-                    <span>Mês:</span>
-                    <input type="text" placeholder="janeiro">
-                </div>
-
-                <div class="flex">
-                    <div class="inputBox">
-                        <span>Ano:</span>
-                        <input type="number" placeholder="2028">
-                    </div>
-                    <div class="inputBox">
-                        <span>CVV :</span>
-                        <input type="text" placeholder="1234">
-                    </div>
-                </div>
-
-            </div>
-    
+<div class="wrapper">
+  <div class="payment">   
+    <h2>Pagamento</h2>
+    <div class="form">
+      <div class="card space icon-relative">
+        <label class="label">Nome do Cartão:</label>
+        <input type="text" class="input" placeholder="Nome do cartão">
+        <i class="fas fa-user"></i>
+      </div>
+      <div class="card space icon-relative">
+        <label class="label">Número do Cartão:</label>
+        <input type="text" class="input" data-mask="0000 0000 0000 0000" placeholder="Número do Cartão">
+        <i class="far fa-credit-card"></i>
+      </div>
+      <div class="card-grp space">
+        <div class="card-item icon-relative">
+          <label class="label">Validade:</label>
+          <input type="text" name="expiry-data" class="input" data-mask="00 / 00"  placeholder="00 / 00">
+          <i class="far fa-calendar-alt"></i>
         </div>
+        <div class="card-item icon-relative">
+          <label class="label">CVC:</label>
+          <input type="text" class="input" data-mask="0000" placeholder="0000">
+          <i class="fas fa-lock"></i>
+        </div>
+      </div>
+        
+      <div class="btn">
+        Finalizar compra
+      </div> 
+      
+    </div>
+  </div>
+</div>
 
-        <input type="submit" value="Finalizar Compra" class="submit-btn" href="marketing-cursos">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
-    </form>
-
-</div>    
-    
 </body>
 </html>
