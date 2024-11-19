@@ -183,6 +183,9 @@ router.get("/curso_logado", function (req, res) {
 router.get("/escolha_user", function (req, res) {
   res.render("pages/escolha_user", { pagina: "escolha_user", logado: null });
 });
+router.get("/formcursos", function (req, res) {
+  res.render("pages/formcursos", { pagina: "formcursos", logado: null });
+});
 
     router.get(
         "/perfil",
