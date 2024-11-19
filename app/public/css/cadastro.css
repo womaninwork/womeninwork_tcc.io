@@ -27,12 +27,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #fde3a7d7;
+    background-color: #eba7af;
     padding: 1rem;
 }
 
 .form-image img {
-    width: 31rem;
+    width: 29rem;
 }
 
 .form {

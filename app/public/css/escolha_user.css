@@ -11,15 +11,6 @@ body{
     background-color: #f4f4f4;
 }
 
-.escolha {
-    background-color: #f4f4f4;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80vh;
-    margin: 0;
-}
 
 .container_flex{
     display: flex;
@@ -164,13 +155,25 @@ nav .close-icon{
     color: white;
 }
 
+.escolha {
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65vh;
+    margin: 0;
+}
 
-h3.areas{
+span {
     font-size: 40px;
     padding-top: 70px;
-    align-items: center;
+    display: block;  /* Garante que o span ocupe toda a linha */
     text-align: center;
+    width: 100%; /* Ocupa toda a largura disponível */
+    margin: 0 auto; /* Centraliza o span */
 }
+
 .container2 {
     display: flex;
     justify-content: center;
@@ -192,7 +195,7 @@ h3.areas{
     height: 130px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px; 
+    margin-bottom: 40px; 
 }
 
 /* Estilo dos botões */
