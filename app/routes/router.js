@@ -211,36 +211,7 @@ router.get("/home_prof", function (req, res) {
           usuarioController.resetarSenha(req, res);
       });
         
-//banco de dados//
-router.get('/tabelas', async (req, res) => {
-    try {
-        const [results, fields] = await pool.query('SHOW TABLES');
-        res.json(results);
-    } catch (error) {
-        console.error('Erro ao listar as tabelas:', error);
-        res.status(500).send('Erro ao listar as tabelas');
-    }
-  });
-      
-      
-      router.get(
-        "/ativar-conta",
-        verificarUsuAutenticado,
-        async function (req, res) {
-          usuarioController.ativarConta(req, res);
-        }
-      );
-      
-      
-      router.get(
-        "/adm",
-        verificarUsuAutenticado,
-        verificarUsuAutorizado([2, 3], "pages/restrito"),
-        function (req, res) {
-          res.render("pages/adm", req.session.autenticado);
-        }
-      );
-      
+
   
   
   module.exports = router;

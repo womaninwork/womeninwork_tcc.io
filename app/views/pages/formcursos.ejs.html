@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criação de Curso</title>
+  <link rel="stylesheet" href="formcursos.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="nav">
+        <a href="/index">
+            <img src="imagem/logo2.png" width="158px" height="60px">
+        </a></nav>
+    <h1>Criar Novo Curso</h1>
+    <form id="cursoForm">
+      <label for="titulo">Título do Curso:</label>
+      <input type="text" id="titulo" name="titulo" required placeholder="Digite o título do curso">
+
+      <label for="descricao">Descrição do Curso:</label>
+      <textarea id="descricao" name="descricao" required placeholder="Descreva o curso"></textarea>
+
+      <label for="preco">Preço do Curso (R$):</label>
+      <input type="number" id="preco" name="preco" min="0" step="0.01" required placeholder="Ex: 199.99">
+
+      <label for="imagem">Imagem do Curso:</label>
+      <input type="file" id="imagem" name="imagem" accept="image/*" onchange="mostrarImagem()">
+
+      <button type="submit">Criar Curso</button>
+    </form>
+
+    <div id="preview">
+      <h2>Prévia do Curso</h2>
+      <div id="previewConteudo">
+        <img id="previewImagem" src="#" alt="Prévia da Imagem" style="display:none;">
+        <h3 id="previewTitulo">Título do Curso</h3>
+        <p id="previewDescricao">Descrição do Curso</p>
+        <p id="previewPreco">Preço: R$ 0,00</p>
+      </div>
+    </div>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
