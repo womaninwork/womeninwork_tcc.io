@@ -23,7 +23,7 @@ body {
 }
 
 .header {
-  background-color: #eee;
+    background-color: #d598a0;
   padding: 20px;
 }
 
@@ -48,7 +48,7 @@ h2 {
 }
 
 .form-control input {
-  border: 2px solid #f0f0f0;
+  border: 2px solid #d598a0;
   display: block;
   border-radius: 10px;
   font-size: 14px;

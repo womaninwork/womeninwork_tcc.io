@@ -98,43 +98,55 @@ regrasValidacaoFormNovaSenha: [
 },
  
 cadastrar: async (req, res) => {
-    // Coleta os erros de validação
-    const erros = validationResult(req);
+  // Coleta os erros de validação
+  const erros = validationResult(req);
 
-    // Cria o objeto de dados do formulário
-    const dadosForm = {
-        nome_usuario: req.body.nome_usuario,
-        sobrenome_usuario: req.body.sobrenome_usuario,
-        email_usuario: req.body.email_usuario,
-        celular_usuario: req.body.celular_usuario,
-        senha_usuario: criptografarSenha(req.body.senha_usuario),
-    };
+  // Cria o objeto de dados do formulário (sem criptografar a senha aqui)
+  const dadosForm = {
+      nome_usuario: req.body.nome_usuario,
+      sobrenome_usuario: req.body.sobrenome_usuario,
+      email_usuario: req.body.email_usuario,
+      celular_usuario: req.body.celular_usuario,
+      senha_usuario: req.body.senha_usuario,  // senha será criptografada no model
+  };
 
-    // Verifica se há erros de validação
-    if (!erros.isEmpty()) {
-      console.log(erros);
-        return res.render("pages/cadastro", {
-            listaErros: erros.array(),
-            dadosNotificacao: null,
-            valores: req.body
-        });
-    }
+  // Verifica se há erros de validação
+  if (!erros.isEmpty()) {
+      // Remove a senha do formulário ao reenviar os dados para evitar expor senhas no front-end
+      const { senha_usuario, confirmPassword, ...safeForm } = req.body;
+      return res.render("pages/cadastro", {
+          listaErros: erros.array(),
+          dadosNotificacao: null,
+          valores: safeForm // envia o formulário sem a senha
+      });
+  }
 
-    try {
-        await usuario.create(dadosForm);
+  try {
+      // Chama o model para criar o novo usuário
+      await usuario.create(dadosForm);
 
-        res.render("pages/cadastro", {
-            listaErros: null,
-            dadosNotificacao: {
-                titulo: "Cadastro realizado!",
-                mensagem: "Novo usuário criado com sucesso!",
-                tipo: "success"
-            },
-            valores: req.body
-        });
-    } catch (e) {
-        console.error(e);
-    }
+      res.render("pages/cadastro", {
+          listaErros: null,
+          dadosNotificacao: {
+              titulo: "Cadastro realizado!",
+              mensagem: "Novo usuário criado com sucesso!",
+              tipo: "success"
+          },
+          valores: {}  // Limpa os campos após o sucesso
+      });
+  } catch (e) {
+      console.error(e);
+      // Renderiza a página com erro caso haja algum problema na criação
+      res.render("pages/cadastro", {
+          listaErros: null,
+          dadosNotificacao: {
+              titulo: "Erro ao cadastrar",
+              mensagem: "Ocorreu um erro ao criar o usuário. Tente novamente mais tarde.",
+              tipo: "danger"
+          },
+          valores: req.body // Retorna os valores do formulário
+      });
+  }
 }
 }
  

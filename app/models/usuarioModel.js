@@ -61,10 +61,13 @@ const bcrypt = require("bcryptjs");
 
         create: async (camposForm) => {
             try {
+                // Criptografa a senha usando bcrypt
                 const senhaHash = await bcrypt.hash(camposForm.senha_usuario, 12); 
                 camposForm.senha_usuario = senhaHash;
     
-                // Remover o campo confirmPassword (não deve ser salvo no banco)
+                // Remove o campo confirmPassword (não deve ser salvo no banco)
+                delete camposForm.confirmPassword;
+    
                 // Inserção no banco de dados
                 const [resultados] = await pool.query(
                     "INSERT INTO usuario SET ?", [camposForm]
@@ -72,7 +75,7 @@ const bcrypt = require("bcryptjs");
                 console.log("Usuário inserido com sucesso!");
                 return resultados;  // Retorna os resultados da query
             } catch (error) {
-                console.log(error);
+                console.error(error); // Log de erro
                 return null;
             }
         },

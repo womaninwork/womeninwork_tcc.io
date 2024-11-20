@@ -125,6 +125,7 @@ nav ul a{
     text-transform: uppercase;
     font-size: 14px;
     display: block;
+    text-decoration: none;
 }
 nav ul a:not(.btn)::after{
     content: "";
@@ -191,7 +192,7 @@ nav .close-icon{
     cursor: pointer;
     display: inline-block;
     transition: 0.1s;
-    border: none; /* Removido border: 0px solid black; */
+    border: none; 
 }
 
 button a {

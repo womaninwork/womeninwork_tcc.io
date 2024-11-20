@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Lora:wght@500&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    font-family: "Poppins", sans-serif;
+}
+body{
+    background-color: #f4f4f4;
+}
+
+
+.container_flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 700px;
+    width: 100%;
+    position: relative;
+}
+.hero{
+    width: 41%;
+    height: 700px;
+    background-color: #D3606E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    font-size: xx-large;
+    color: white;
+    font-weight: 400;
+    gap: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    text-align: center;
+    
+}
+.hero button{
+    background-color: rgba(255, 0, 234, 0);
+    color: white;
+    border: 3px solid #ffffff;
+    border-radius: 30px;
+    width: 160px;
+    height: 60px;
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.1s;
+    font-size: x-large;
+    font-weight: 600;
+  
+}
+
+button:hover{
+    cursor: pointer;
+    transition: 0.1s;
+    transform: scale(1.2);
+    border: none;
+}
+
+
+button:hover a{
+    color: white;
+    text-decoration: none;
+}
+
+button{
+    border: none;
+}
+
+section,footer{
+    padding: 54px 0;
+}
+h1{
+    font-size: 50px;
+}
+p{
+    color: purple;
+}
+.container{
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.btn{
+    background-color: pink;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.1s;
+}
+
+.sobre_button:hover{
+    background-color: #D3606E;
+    transition: 0.1s;
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.btn:hover{
+    background-color: #eca1aa;
+}
+
+.nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+nav ul{
+    display: flex;
+    align-items: center;
+}
+nav ul a{
+    color: black;
+    margin: 0 25px;
+    text-transform: uppercase;
+    font-size: 14px;
+    display: block;
+    text-decoration: none;
+}
+nav ul a:not(.btn)::after{
+    content: "";
+    background-color: pink;
+    height: 3px;
+    width: 0%;
+    display: block;
+    margin: 0 auto;
+    transition: 0.3s;
+    
+}
+nav ul a:hover::after{
+    width: 100%;
+}
+
+nav .menu-icon{
+    cursor: pointer;
+    font-size: 25px;
+    color: #1C10A3;
+    display: none;
+}
+
+nav .close-icon{
+    display: none;
+    font-size: 30px;
+    color: white;
+}
+
+.escolha {
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65vh;
+    margin: 0;
+}
+
+span {
+    font-size: 40px;
+    padding-top: 70px;
+    display: block;  /* Garante que o span ocupe toda a linha */
+    text-align: center;
+    width: 100%; /* Ocupa toda a largura disponível */
+    margin: 0 auto; /* Centraliza o span */
+}
+
+.container2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px; 
+}
+
+/* opção de usuário */
+.user-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Estilo das imagens */
+.user-image {
+    width: 130px;
+    height: 130px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px; 
+}
+
+/* Estilo dos botões */
+.btn {
+    padding: 12px 25px; 
+    background-color: #f18592;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #d3606e;
+}
+
+.btn a {
+    color: white;
+    text-decoration: none;
+}

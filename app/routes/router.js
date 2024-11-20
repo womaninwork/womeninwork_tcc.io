@@ -104,6 +104,7 @@ router.get("/addItem", function (req, res) {
       usuarioController.cadastrar(req, res);
     }
   );
+  
   router.get("/usuarios", async (req, res) => {
     try {
       // Buscar todos os usuários do banco de dados
@@ -169,6 +170,21 @@ router.get("/home_comum", function (req, res) {
 
 router.get("/home_prof", function (req, res) {
   res.render("pages/home_prof", { pagina: "home_prof", logado: null });
+});
+
+router.get("/aula", function (req, res) {
+  res.render("pages/aula", { pagina: "aula", logado: null });
+});
+
+router.get("/curso_logado", function (req, res) {
+  res.render("pages/curso_logado", { pagina: "curso_logado", logado: null });
+});
+
+router.get("/escolha_user", function (req, res) {
+  res.render("pages/escolha_user", { pagina: "escolha_user", logado: null });
+});
+router.get("/formcursos", function (req, res) {
+  res.render("pages/formcursos", { pagina: "formcursos", logado: null });
 });
 
     router.get(
