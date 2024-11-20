@@ -100,12 +100,11 @@ router.get("/addItem", function (req, res) {
     });
   });
 
-  router.post(
-    "/cadastro",
-    async function (req, res) {
+  router.post("/cadastro", async function (req, res) {
       usuarioController.cadastrar(req, res);
     }
   );
+  
   router.get("/usuarios", async (req, res) => {
     try {
       // Buscar todos os usuários do banco de dados
@@ -136,6 +135,56 @@ router.get("/cursos", function (req, res) {
 
 router.get("/sobrenos", function (req, res) {
     res.render("pages/sobrenos", { pagina: "sobrenos", logado: null });
+});
+router.get("/marketing-cursos", function (req, res) {
+  res.render("pages/marketing-cursos", { pagina: "marketing-cursos", logado: null });
+});
+
+router.get("/marketing-cursos", function (req, res) {
+  res.render("pages/marketing-cursos", { pagina: "marketing-cursos", logado: null });
+});
+
+router.get("/design_grafico", function (req, res) {
+  res.render("pages/design_grafico", { pagina: "design_grafico", logado: null });
+});
+
+router.get("/fotografia", function (req, res) {
+  res.render("pages/fotografia", { pagina: "fotografia", logado: null });
+});
+
+router.get("/pagamento", function (req, res) {
+  res.render("pages/pagamento", { pagina: "pagamento", logado: null });
+});
+
+router.get("/perfil_comum", function (req, res) {
+  res.render("pages/perfil_comum", { pagina: "perfil_comum", logado: null });
+});
+
+router.get("/perfil_prof", function (req, res) {
+  res.render("pages/perfil_prof", { pagina: "perfil_prof", logado: null });
+});
+
+router.get("/home_comum", function (req, res) {
+  res.render("pages/home_comum", { pagina: "home_comum", logado: null });
+});
+
+router.get("/home_prof", function (req, res) {
+  res.render("pages/home_prof", { pagina: "home_prof", logado: null });
+});
+
+router.get("/aula", function (req, res) {
+  res.render("pages/aula", { pagina: "aula", logado: null });
+});
+
+router.get("/curso_logado", function (req, res) {
+  res.render("pages/curso_logado", { pagina: "curso_logado", logado: null });
+});
+
+router.get("/escolha_user", function (req, res) {
+  res.render("pages/escolha_user", { pagina: "escolha_user", logado: null });
+});
+router.get("/formcursos", function (req, res) {
+  res.render("pages/formcursos", { pagina: "formcursos", logado: null });
 });
 
     router.get(

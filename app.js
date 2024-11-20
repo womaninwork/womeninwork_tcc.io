@@ -2,7 +2,9 @@ const express = require("express");
 const app = express();
 const env = require("dotenv").config();
 const port = process.env.APP_PORT;
- 
+const { body, validationResult } = require('express-validator');
+
+
 var session = require("express-session");
 app.use(
   session({
@@ -20,6 +22,52 @@ app.use(express.urlencoded({ extended: true }));
  
 var router = require("./app/routes/router");
 app.use("/", router);
+
+app.post('/register', (req, res) => {
+  const { nome, email, senha } = req.body;
+
+  if (!nome || !email || !senha) {
+      return res.status(400).send('Todos os campos são obrigatórios.');
+  }
+
+  // Inserir o usuário no banco de dados
+  pool.query(
+      'INSERT INTO users (name, email, password) VALUES (?, ?, ?)',
+      [nome, email, senha],
+      (err, results) => {
+          if (err) {
+              console.error(err);
+              return res.status(500).send('Erro ao registrar o usuário.');
+          }
+          res.json({ message: 'Usuário registrado com sucesso!', redirectTo: '/users' });
+      }
+  );
+});
+
+app.get('/users', async (req, res) => {
+  try {
+    const [rows] = await pool.query('SELECT * FROM users');
+    
+    // Enviar os dados como JSON
+    res.json(rows);
+  } catch (error) {
+    console.error('Erro ao buscar usuários:', error);
+    res.status(500).send('Erro ao buscar usuários.');
+  }
+});
+app.post('/cadastro', function( req, res){
+  // Obter os dados que serão utlizados para o cadastrado
+  let nome_usuario = req.body.nome_usuario;
+  let sobrenome_usuario = req.body.sobrenome_usuario;
+  let email_usuario = req.body.email_usuario;
+  let celular_usuario = req.body.celular_usuario;
+  let senha_usuario = req.body.senha_usuario;
+  
+  //SQL
+  let sql = 'INSERT INTO usuario ( nome_usuario, sobrenome_usuario, email_usuario, celular_usuario, senha_usuario) '
+
+});
+
 app.listen(port, () => {
   console.log(`Servidor ouvindo na porta ${port}\nhttp://localhost:${port}`);
 });

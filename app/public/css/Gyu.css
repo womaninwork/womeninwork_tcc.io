@@ -125,6 +125,7 @@ nav ul a{
     text-transform: uppercase;
     font-size: 14px;
     display: block;
+    text-decoration: none;
 }
 nav ul a:not(.btn)::after{
     content: "";
@@ -157,31 +158,32 @@ nav .close-icon{
 
  /* INICIO DA AREA SOBRE NOS */
 
-img.home3{
+ img.home3{
     width: 100%;
 }
-.Sobre .sobre_container{
+.Sobre .sobre_container {
     display: flex;
     align-items: center;
 }
 
-.Sobre .sobre_texto{
+.Sobre .sobre_texto {
     width: 50%;
     padding: 0 40px;
     gap: 20px;
     display: flex;
+    flex-direction: column; /* Muda para coluna para o texto */
 }
 
-.Sobre .sobre_texto h3{
+.Sobre .sobre_texto h3 {
     font-size: 56px;
 }
 
-.Sobre .sobre_texto p{
+.Sobre .sobre_texto p {
     margin: 5px 0 10px 0;
     font-size: large;
 }
 
-.Sobre .sobre_texto button{
+.Sobre .sobre_texto button {
     background-color: #EC808D;
     color: white;
     border-radius: 10px;
@@ -190,25 +192,20 @@ img.home3{
     cursor: pointer;
     display: inline-block;
     transition: 0.1s;
-    border: 0px solid black;
-}
-button a{
-    color: white;
+    border: none; 
 }
 
-.Sobre .sobre_img{
+button a {
+    color: white;
+    text-decoration: none;
+}
+
+.Sobre .sobre_img {
     width: 50%;
 }
 
-.Sobre .sobre_img img{
+.Sobre .sobre_img img {
     width: 100%;
-}
-
-.sobre_texto{
-    flex-direction: column;
-    width: 10vw;
-    gap: 30px;
-    max-width: 700px;
 }
 
  /* FIM DA AREA SOBRE NOS */
@@ -296,6 +293,11 @@ button a{
     margin-bottom: 50px;
   }
 
+  .card-footer button a{
+    color: white;
+    text-decoration: none; /* Remove sublinhado */
+}
+
 button:hover{
     cursor: pointer;
 }
@@ -335,6 +337,7 @@ h3.areas{
     cursor: pointer;
     display: inline-block;
     transition: 0.1s;
+    text-decoration: none;
 }
 .areas2_texto{
     display: flex;
@@ -380,6 +383,7 @@ h3.areas{
     cursor: pointer;
     display: inline-block;
     transition: 0.1s;
+    text-decoration: none;
 }
 
 .Areas2 .areas2_img{
@@ -440,6 +444,11 @@ h3.areas{
     
 }
 
+.areas_texto a{
+    color: #fff;
+    text-decoration: none;
+}
+
 /* FIM EXEMPLOS DE AREAS DE CURSOS */
 
 
@@ -453,6 +462,7 @@ h3.areas{
 .Depoimentos p{
     margin-bottom: 20px;
     text-align: center;
+    color: rgb(21, 2, 71);
 }
 
 .cards{
@@ -492,7 +502,7 @@ h3.areas{
 
 .Depoimentos .cards-item .estrela{
     margin: 15px;
-    border-top: 2px solid gray;
+    border-top: 2px solid rgb(199, 199, 199);
 }
 
 .Depoimentos .cards-item .estrela i{

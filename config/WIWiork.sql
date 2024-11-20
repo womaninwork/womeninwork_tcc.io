@@ -77,8 +77,6 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 select * from usuario
-
-
 -- -----------------------------------------------------
 -- Table `blpkdphhphnmf0o8ikdt`.`aluno_tem_cursos`
 -- -----------------------------------------------------

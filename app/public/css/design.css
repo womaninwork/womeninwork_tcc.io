@@ -125,7 +125,6 @@ nav ul a{
     text-transform: uppercase;
     font-size: 14px;
     display: block;
-    text-decoration: none;
 }
 nav ul a:not(.btn)::after{
     content: "";
@@ -194,7 +193,7 @@ nav .close-icon{
 }
 
 .Sobre .sobre_img {
-    width: 50%;
+    width: 30%;
     display: flex; /* Para garantir que a imagem fique centralizada */
     justify-content: flex-end; /* Alinha a imagem à direita */
 }

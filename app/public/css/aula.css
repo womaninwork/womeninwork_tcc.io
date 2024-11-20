@@ -1,0 +1,80 @@
+body{
+    background-color: #EC808D;
+}
+
+.Areas2 .areas2_container{
+    display: flex;
+    align-items: center;
+    padding-top: 30px;
+}
+
+
+.Areas2 .areas2_texto h3{
+    font-size: 56px;
+}
+
+.Areas2 .areas2_texto a{
+    background-color: #EC808D;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.1s;
+    text-decoration: none;
+}
+.areas2_texto{
+    display: flex;
+    flex-direction: column;
+    width: 10vw;
+    gap: 30px;
+    max-width: 700px;
+    justify-content: center;
+    align-items: center;
+}
+.Areas2 .areas2_img{
+    width: 50%;
+}
+
+.Areas2 .areas2_img img{
+    width: 100%;
+}
+.Areas2 .areas2_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Areas2 .areas2_texto{
+    width: 50%;
+}
+
+.Areas2 .areas2_texto h3{
+    font-size: 56px;
+}
+
+.Areas2 .areas2_texto p{
+    margin: 5px 0 10px 0;
+    font-size: large;
+    width: 50%;
+}
+
+.Areas2 .areas2_texto a{
+    background-color: #EC808D;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.1s;
+    text-decoration: none;
+}
+
+.Areas2 .areas2_img{
+    width: 50%;
+}
+
+.Areas2 .areas2_img img{
+    width: 100%;
+    padding-left: 40px;
+}

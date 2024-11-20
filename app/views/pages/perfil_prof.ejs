@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=0.1">
-         <link rel="stylesheet" href="perfil_prof.css">
+         <link rel="stylesheet" href="/css/perfil_prof.css">
          <link rel="stylesheet" href="/css/faleConosco.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <style>
@@ -24,7 +24,7 @@
                     <ul class="ul">
                         <a href="/index">Home</a>
                         <a href="/sobrenos">Sobre nós</a>
-                        <a href="/cursos2">Cursos</a>
+                        <a href="/cursos">Cursos</a>
                         <a data-bs-toggle="modal" data-bs-target="#exampleModal">
                           Fale conosco
                         </a>
@@ -92,15 +92,21 @@
 </header>
 
 <div class="container_perfil">
-    <div class="profile-header">
-        <img src="imagem/perfil.jpg" alt="Foto de Perfil" class="profile-picture">
-        <h1>Agata Rodrigues</h1>
-        <p>Desenvolvedora Web</p>
-    </div>
-    
-    <div class="profile-details">
-        <p>Sou uma desenvolvedora web apaixonada por criar experiências digitais incríveis. Tenho experiência em HTML, CSS, JavaScript e frameworks modernos.</p>
-    </div>
+  <label class="picture" for="picture__input" tabIndex="0">
+    <span class="picture__image"></span>
+  </label>
+  <input type="file" name="picture__input" id="picture__input">
+  
+  <div class="profile-header">
+    <h1>Agata Rodrigues</h1>
+    <p>Desenvolvedora Web</p>
+  </div>
+  
+  <div class="profile-details">
+    <p>Sou uma desenvolvedora web apaixonada por criar experiências digitais incríveis. Tenho experiência em HTML, CSS, JavaScript e frameworks modernos.</p>
+  </div>
+</div>
+
     
 </div>
 
@@ -111,9 +117,11 @@
         <a href="#"> <i class="fa fa-github icon" ></i></a>
     </nav>
 
-<div class="container_perfil">
-  <button class="follow-button">Editar Perfil</button>
-</div>
+    <div class="container_perfil">
+      <button class="follow-button">Editar Perfil</button>
+      <button class="follow-button">Criar Curso</button>
+    </div>
+    
 
  <!--LINHA DE SEPARAÇAO-->
  <hr size="3" width="100%" color="#EEEEEE" style="margin: 0%;">
@@ -204,5 +212,7 @@
   </article>
 </footer>
 <!--FIM DO FOOTER-->
+
+<script src="/js/perfil.js"></script>
 </body>
 </html>
