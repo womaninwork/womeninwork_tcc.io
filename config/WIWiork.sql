@@ -66,23 +66,13 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `blpkdphhphnmf0o8ikdt`.`usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `blpkdphhphnmf0o8ikdt`.`usuario` (
-  `id_usuario` INT(11) NOT NULL,
+  `id_usuario` INT(11) NOT NULL AUTO_INCREMENT,
   `nome_usuario` VARCHAR(70) NOT NULL,
   `email_usuario` VARCHAR(35) NOT NULL,
   `celular_usuario` CHAR(11) NOT NULL,
   `senha_usuario` VARCHAR(10) NOT NULL,
-  `sobrenome_usuario` VARCHAR(70) NOT NULL,
-  `tipo_usuario_id_tipo_usuario` INT(11) NOT NULL,
-  `cursos_id_cursos` INT(11) NOT NULL,
-  PRIMARY KEY (`id_usuario`),
-  UNIQUE INDEX `id_usuario_UNIQUE` (`id_usuario` ASC) VISIBLE,
-  UNIQUE INDEX `email_usuario_UNIQUE` (`email_usuario` ASC) VISIBLE,
-  UNIQUE INDEX `senha_usuario_UNIQUE` (`senha_usuario` ASC) VISIBLE,
-  INDEX `fk_usuario_tipo_usuario_idx` (`tipo_usuario_id_tipo_usuario` ASC) VISIBLE,
-  INDEX `fk_usuario_cursos1_idx` (`cursos_id_cursos` ASC) VISIBLE,
-  CONSTRAINT `fk_usuario_tipo_usuario`
-    FOREIGN KEY (`tipo_usuario_id_tipo_usuario`)
-    REFERENCES `blpkdphhphnmf0o8ikdt`.`tipo_usuario` (`id_tipo_usuario`))
+  `sobrenome_usuario` VARCHAR(70) NOT NULL
+))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
