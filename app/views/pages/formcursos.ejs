@@ -4,21 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Criação de Curso</title>
-  <link rel="stylesheet" href="formcursos.css">
+  <link rel="stylesheet" href="/css/formcursos.css">
 </head>
 <body>
   <div class="container">
     <nav class="nav">
         <a href="/index">
-            <img src="img/logo2.png" width="158px" height="60px">
+            <img src="imagem/logo2.png" width="158px" height="60px">
         </a></nav>
     <h1>Criar Novo Curso</h1>
-    <form id="cursoForm">
+    <form action="/formcursos" method="post">
       <label for="titulo">Título do Curso:</label>
       <input type="text" id="titulo" name="titulo" required placeholder="Digite o título do curso">
 
       <label for="descricao">Descrição do Curso:</label>
       <textarea id="descricao" name="descricao" required placeholder="Descreva o curso"></textarea>
+
+      <label for="categoria">categoria do curso:</label>
+      <textarea id="categoria" name="categoria" required placeholder="Digite a categoria do curso"></textarea>
+
+      <label for="descricao">Tempo de duração:</label>
+      <textarea id="duração" name="duração" required placeholder="Digite o tempo de duração"></textarea>
+
 
       <label for="preco">Preço do Curso (R$):</label>
       <input type="number" id="preco" name="preco" min="0" step="0.01" required placeholder="Ex: 199.99">
@@ -30,6 +37,6 @@
     </form>
 
     
-  <script src="formcusos.js"></script>
+  <script src="formcursos.js"></script>
 </body>
 </html>

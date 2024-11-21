@@ -117,6 +117,7 @@ router.get("/addItem", function (req, res) {
       res.status(500).send("Erro interno do servidor.");
     }
   });
+
   router.get(
     "/adm",
     verificarUsuAutenticado,
@@ -227,7 +228,7 @@ router.get("/formcursos", function (req, res) {
           usuarioController.resetarSenha(req, res);
       });
         
-
+      
   
   
   module.exports = router;

@@ -55,18 +55,8 @@ app.get('/users', async (req, res) => {
     res.status(500).send('Erro ao buscar usuários.');
   }
 });
-app.post('/cadastro', function( req, res){
-  // Obter os dados que serão utlizados para o cadastrado
-  let nome_usuario = req.body.nome_usuario;
-  let sobrenome_usuario = req.body.sobrenome_usuario;
-  let email_usuario = req.body.email_usuario;
-  let celular_usuario = req.body.celular_usuario;
-  let senha_usuario = req.body.senha_usuario;
-  
-  //SQL
-  let sql = 'INSERT INTO usuario ( nome_usuario, sobrenome_usuario, email_usuario, celular_usuario, senha_usuario) '
 
-});
+
 
 app.listen(port, () => {
   console.log(`Servidor ouvindo na porta ${port}\nhttp://localhost:${port}`);
