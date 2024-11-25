@@ -190,5 +190,6 @@ cadastrarCurso: async (req, res) => {
   }
 }
 }
+
  
 module.exports = {usuarioController}

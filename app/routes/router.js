@@ -84,7 +84,7 @@ router.get("/cursosAPI", async function (req, res) {
 
 
 router.post("/login", async (req, res) => {
-  const { nome, email, senha } = req.body;
+  const { email, senha } = req.body;
 
   try {
     // Verifica se os campos foram preenchidos
@@ -102,6 +102,11 @@ router.post("/login", async (req, res) => {
 
     const user = rows[0];
 
+    // Verifica se o campo senha existe no usuário
+    if (!user.senha) {
+      return res.status(500).json({ message: "Senha do usuário não encontrada" });
+    }
+
     // Verifica se a senha está correta
     const passwordMatch = bcrypt.compareSync(senha, user.senha);
 
@@ -113,8 +118,6 @@ router.post("/login", async (req, res) => {
     req.session.userid = user.id;
     req.session.nome = user.nome; // Salvando o nome do usuário
     req.session.email = user.email;
-    console.log(nome);
-
 
     // Salva a sessão e redireciona para a página do perfil
     return req.session.save(() => {
@@ -124,6 +127,60 @@ router.post("/login", async (req, res) => {
     console.error(error);
     return res.status(500).json({ message: "Erro no servidor, tente novamente mais tarde." });
   }
+});
+
+
+router.post("/cadastro", async (req, res) => {
+
+    // Extrai os dados do formulário
+    const { nome, sobrenome, email, celular, senha, confirmPassword } = req.body;
+
+    // Verifica se as senhas são iguais
+    if (senha !== confirmPassword) {
+        return res.render("pages/cadastro", {
+            listaErros: [{ msg: "As senhas não coincidem" }],
+            valores: req.body // Retorna os dados inseridos pelo usuário
+        });
+    }
+
+    try {
+        // Verifica se o email já está em uso
+        const [emailExist] = await pool.query("SELECT id_usuario FROM usuario WHERE email_usuario = ?", [email]);
+
+        if (emailExist.length > 0) {
+            return res.render("pages/cadastro", {
+                listaErros: [{ msg: "Email já está em uso." }],
+                valores: req.body // Retorna os dados inseridos pelo usuário
+            });
+        }
+
+        // Criptografa a senha
+        const salt = await bcrypt.genSalt(10); // Gera um salt
+        const hash = await bcrypt.hash(senha, salt); // Criptografa a senha
+
+        // Insere o novo usuário no banco de dados
+        await pool.query(
+            "INSERT INTO usuario (nome_usuario, sobrenome_usuario, email_usuario, celular_usuario, senha_usuario) VALUES (?, ?, ?, ?, ?)",
+            [nome, sobrenome, email, celular, hash]
+        );
+
+        // Redireciona o usuário para a página de login
+        res.render("pages/cadastro", {
+            listaErros: null,
+            dadosNotificacao: {
+                titulo: "Cadastro realizado!",
+                mensagem: "Novo usuário criado com sucesso! Faça o login.",
+                tipo: "success"
+            },
+            valores: {} // Limpa os campos após o sucesso
+        });
+    } catch (e) {
+        console.error(e);
+        res.render("pages/cadastro", {
+            listaErros: [{ msg: "Ocorreu um erro ao cadastrar. Tente novamente mais tarde." }],
+            valores: req.body // Retorna os dados inseridos pelo usuário
+        });
+    }
 });
 
 
