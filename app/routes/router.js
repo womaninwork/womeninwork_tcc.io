@@ -228,7 +228,9 @@ router.get("/formcursos", function (req, res) {
           usuarioController.resetarSenha(req, res);
       });
         
-      
+      router.get("/formulario", function(req, res){
+        res.render("formulario")
+      });
   
   
   module.exports = router;
