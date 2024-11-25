@@ -22,7 +22,7 @@
                         <img src="imagem/logo2.png" width="158px" height="60px">
                     </a>
                     <ul class="ul">
-                        <a href="/index">Home</a>
+                        <a href="/home_prof">Home</a>
                         <a href="/sobrenos">Sobre nós</a>
                         <a href="/cursos">Cursos</a>
                         <a href="/formcursos">Criar Curso</a>
@@ -99,7 +99,7 @@
   <input type="file" name="picture__input" id="picture__input">
   
   <div class="profile-header">
-    <h1>Agata Rodrigues</h1>
+    <h1> <%= nome %> </h1>
     <p>Desenvolvedora Web</p>
   </div>
   
@@ -132,73 +132,81 @@
 
         <!--INICIO CARD DOS CURSOS-->
         <section class="container_cursos">
-          <!--INICIO DO CARD 1-->
-          <article class="card card-1">
-            <!--CARD HEADER-->
-            <article class="card-header">
-              <img src="imagem/marketingdig.jpg" class="card-img" />
-            </article>
-    
-            <!--CARD BODY-->
-            <section class="card-body">
-              <h2 class="card-titulo">Marketing</h2>
-              <p class="card-texto">
-                Este curso prepara você para criar planos estratégicos de marketing, identificar tendências e oportunidades de vendas[...]
-              </p>
+          <section style="display: flex; width: full; justify-content: center;">
+            <div id="lista-cursos" style="width: full; display: grid;  grid-template-columns: 3; max-width: 1200px;">
+              <div style="padding: 14px; border: 2px solid black; "></div>
+            </div>
             </section>
-    
-            <!--CARD FOOTER-->
-            <section class="card-footer">
-              <button><a href="/marketing-cursos">Saiba Mais</a></button>
-            </section>
-          </article>
+            <script>
+              // Função para obter os cursos da API
+              async function carregarCursos() {
+                try {
+                  // Fazendo a requisição para a API /cursosAPI
+                  const response = await fetch('/cursosAPI');
+                  
+                  if (!response.ok) {
+                    throw new Error('Falha ao carregar os cursos');
+                  }
           
-            <!--FIM DO CARD 1-->
-    
-          <!--INICIO DO CARD 2-->
-          <article class="card card-2">
-            <!--CARD HEADER-->
-            <article class="card-header">
-              <img src="imagem/design.jpg" class="card-img" />
-            </article>
-    
-            <!--CARD BODY-->
-            <section class="card-body">
-              <h2 class="card-titulo">Design Gráfico</h2>
-              <p class="card-texto">
-                Aprenda os fundamentos de Design Gráfico, tendo acesso a ferramentas como Adobe Illustrator e Photoshop,além de técnicas para criar conteúdos visuais para redes sociais[..]
-              </p>
+                  // Convertendo a resposta para JSON
+                  const data = await response.json();
+          
+                  // Pegando o div onde os cursos serão exibidos
+                  const listaCursosDiv = document.getElementById('lista-cursos');
+          
+                  // Verificando se a resposta contém cursos
+                  if (data.cursos && data.cursos.length > 0) {
+                    // Limpando a lista antes de adicionar os cursos
+                    listaCursosDiv.innerHTML = '';
+          
+                    // Loop para exibir cada curso
+                    data.cursos.forEach(curso => {
+                      // Criando o HTML para cada curso
+                      const cursoDiv = document.createElement('div');
+                      cursoDiv.classList.add('curso');
+                      
+                      cursoDiv.innerHTML = `
+                      <div style="  width: 300px;
+                          height: 450px;
+                          margin: 25px;
+                          background-color: #fff;
+                          border-radius: 20px;
+                          overflow: hidden;
+                          flex-direction: column;
+                          display: flex;
+                          align-items: center;
+                          justify-content: flex-start;
+                          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
+                          transition: 0.3s;
+                          padding: 10px;">
+                        <image style=" min-width: 100%;
+                                    width: 100%;
+                                    height: 200px;" src=${curso.image} />
+                        <div style="display: flex; flex-direction: column; gap: 16px  align-self: flex-start; margin-top: 14pxs">
+                        <h2>${curso.nome_curso}</h2>
+                        <p><strong>Descrição:</strong> ${curso.descricao_cursos}</p>
+                        <p><strong>Preço:</strong> R$ ${curso.preco_curso}</p>
+                        <p><strong>Duração curso:</strong> ${curso.duraco_curso}</p>
+                        </ div >
+                      </div>
+                      `;
+                      
+                      // Adicionando o curso na lista
+                      listaCursosDiv.appendChild(cursoDiv);
+                    });
+                  } else {
+                    listaCursosDiv.innerHTML = 'Nenhum curso encontrado.';
+                  }
+                } catch (error) {
+                  console.error('Erro ao carregar os cursos:', error);
+                  document.getElementById('lista-cursos').innerHTML = 'Erro ao carregar os cursos.';
+                }
+              }
+          
+              // Carregar os cursos ao carregar a página
+              window.onload = carregarCursos;
+            </script>
             </section>
-    
-            <!--CARD FOOTER-->
-            <section class="card-footer">
-              <button><a href="appmarketing-cursos">Saiba Mais</a></button>
-            </section>
-          </article>
-          <!--FIM DO CARD 2-->
-    
-          <!--INICIO DO CARD 3-->
-          <article class="card card-3">
-            <!--CARD HEADER-->
-            <article class="card-header">
-              <img src="imagem/teste.jpg" class="card-img" />
-            </article>
-    
-            <!--CARD BODY-->
-            <section class="card-body">
-              <h2 class="card-titulo">Comunicação Empresarial</h2>
-              <p class="card-texto">
-                Explore as principais técnicas para uma comunicação eficaz, desenvolvendo habilidades em apresentação de ideias e gestão de conflitos.
-              </p>
-            </section>
-    
-            <!--CARD FOOTER-->
-            <section class="card-footer">
-              <button><a href="/marketing-cursos">Saiba Mais</a></button>
-            </section>
-          </article>
-          <!--FIM DO CARD 3-->
-      </section>
 
 <!--INICIO DO FOOTER-->
 <footer class="footer">

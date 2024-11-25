@@ -121,6 +121,7 @@ nav ul a{
     text-transform: uppercase;
     font-size: 14px;
     display: block;
+    text-decoration: none; 
 }
 nav ul a:not(.btn)::after{
     content: "";

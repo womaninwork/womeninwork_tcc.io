@@ -92,6 +92,7 @@ nav ul a{
     text-transform: uppercase;
     font-size: 14px;
     display: block;
+    text-decoration: none; /* Remove o sublinhado */
 }
 nav ul a:not(.btn)::after{
     content: "";
@@ -121,16 +122,11 @@ nav .close-icon{
 }
 
 .usuario{
-    width: 20px;
+    width: 33px;
+    height: 30px;
 }
 
-.banner {
-    background-image: url(imagem/marketingdig.jpg);
-    background-repeat: no-repeat;
-    background-size: 100%;
-    height: 800px;
-    border-bottom: 10px solid pink;
-}
+
 
 
 

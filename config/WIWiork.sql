@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `blpkdphhphnmf0o8ikdt`.`usuario` (
   `nome_usuario` VARCHAR(70) NOT NULL,
   `email_usuario` VARCHAR(35) NOT NULL,
   `celular_usuario` CHAR(11) NOT NULL,
-  `senha_usuario` VARCHAR(10) NOT NULL,
+  `senha_usuario` VARCHAR(225) NOT NULL,
   `sobrenome_usuario` VARCHAR(70) NOT NULL
 ))
 ENGINE = InnoDB
