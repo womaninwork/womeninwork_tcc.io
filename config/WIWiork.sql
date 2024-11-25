@@ -5,12 +5,13 @@ USE `blpkdphhphnmf0o8ikdt` ;
 -- Table `blpkdphhphnmf0o8ikdt`.`cursos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `blpkdphhphnmf0o8ikdt`.`cursos` (
-  `id_cursos` INT(11) NOT NULL,
+  `id_cursos` INT(11) NOT NULL AUTO_INCREMENT,
   `descricao_cursos` MEDIUMTEXT NOT NULL,
   `nome_curso` VARCHAR(70) NOT NULL,
   `categoria_curso` VARCHAR(70) NOT NULL,
-  `duraco_curso` CHAR(20) NOT NULL,
-  `preco_curso` DOUBLE NOT NULL,
+  `duraco_curso` VARCHAR(20) NOT NULL,
+  `preco_curso` VARCHAR(45) NOT NULL,
+  `image` VARCHAR(90) NOT NULL,
   PRIMARY KEY (`id_cursos`),
   UNIQUE INDEX `id_cursos_UNIQUE` (`id_cursos` ASC) VISIBLE)
 ENGINE = InnoDB
@@ -71,11 +72,11 @@ CREATE TABLE IF NOT EXISTS `blpkdphhphnmf0o8ikdt`.`usuario` (
   `nome_usuario` VARCHAR(70) NOT NULL,
   `email_usuario` VARCHAR(35) NOT NULL,
   `celular_usuario` CHAR(11) NOT NULL,
-  `senha_usuario` VARCHAR(100) NOT NULL,
-  `sobrenome_usuario` VARCHAR(70) NOT NULL,
-  PRIMARY KEY (`id_usuario`),
-  UNIQUE INDEX `id_usuario_UNIQUE` (`id_usuario` ASC) VISIBLE
-);
+  `senha_usuario` VARCHAR(10) NOT NULL,
+  `sobrenome_usuario` VARCHAR(70) NOT NULL
+))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 select * from usuario
 -- -----------------------------------------------------

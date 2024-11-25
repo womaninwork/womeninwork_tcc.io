@@ -104,6 +104,11 @@ router.get("/addItem", function (req, res) {
       usuarioController.cadastrar(req, res);
     }
   );
+
+  router.post("/cadastroCurso", async function (req, res) {
+    usuarioController.cadastrarCurso(req, res);
+  }
+);
   
   router.get("/usuarios", async (req, res) => {
     try {
