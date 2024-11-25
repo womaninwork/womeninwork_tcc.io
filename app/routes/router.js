@@ -88,36 +88,36 @@ router.post("/login", async (req, res) => {
 
   try {
     // Verifica se os campos foram preenchidos
-    if (!email || !senha) {
+    if ((email == undefined && senha == undefined )|| ((email == "" || email == " ") && (senha == "" || senha == " "))) {
       return res.status(400).json({ message: "Email e senha são obrigatórios" });
     }
 
     // Busca o usuário no banco de dados
     const [rows] = await pool.query("SELECT * FROM usuario WHERE email_usuario = ? LIMIT 1", [email]);
-
     // Verifica se o usuário existe
-    if (rows.length === 0) {
+    if (rows.length == 0) {
       return res.status(404).json({ message: "Usuário não encontrado" });
     }
 
     const user = rows[0];
+    console.log(user)
 
     // Verifica se o campo senha existe no usuário
-    if (!user.senha) {
+    if (!user.senha_usuario) {
       return res.status(500).json({ message: "Senha do usuário não encontrada" });
     }
 
     // Verifica se a senha está correta
-    const passwordMatch = bcrypt.compareSync(senha, user.senha);
+    const passwordMatch = bcrypt.compareSync(senha, user.senha_usuario);
 
     if (!passwordMatch) {
       return res.status(401).json({ message: "Senha incorreta" });
     }
 
     // Cria uma sessão para o usuário
-    req.session.userid = user.id;
-    req.session.nome = user.nome; // Salvando o nome do usuário
-    req.session.email = user.email;
+    req.session.userid = user.id_usuario;
+    req.session.nome = user.nome_usuario; // Salvando o nome do usuário
+    req.session.email = user.email_usuario;
 
     // Salva a sessão e redireciona para a página do perfil
     return req.session.save(() => {
