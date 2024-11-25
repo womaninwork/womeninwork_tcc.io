@@ -93,7 +93,7 @@ router.post("/login", async (req, res) => {
     }
 
     // Busca o usuário no banco de dados
-    const [rows] = await pool.query("SELECT * FROM usuario WHERE email = ? LIMIT 1", [email]);
+    const [rows] = await pool.query("SELECT * FROM usuario WHERE email_usuario = ? LIMIT 1", [email]);
 
     // Verifica se o usuário existe
     if (rows.length === 0) {
