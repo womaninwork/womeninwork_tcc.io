@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const bcrypt = require("bcryptjs")
 // const usuarioController = require("../controllers/usuarioController");
 const pool = require('../../config/pool_conexoes');
 const {
@@ -82,57 +83,49 @@ router.get("/cursosAPI", async function (req, res) {
 });
 
 
-router.post(
-  "/login",
-  usuarioController.regrasValidacaoFormLogin,
-  gravarUsuAutenticado,
-  function (req, res) {
-    usuarioController.logar(req, res);
-  }
-);
-
-router.post("/logar", async (req, res) => {
-  const { email, senha } = req.body;
+router.post("/login", async (req, res) => {
+  const { nome, email, senha } = req.body;
 
   try {
-    const [accounts] = await connection.query("SELECT * FROM usuario WHERE email = ? LIMIT 1", [email]);
-
-    if (accounts.length > 0) {
-      const account = accounts[0];
-
-      const passwordMatch = await bcrypt.compareSync(senha, account.senha);
-      console.log(passwordMatch)
-
-      if (!passwordMatch) {
-        req.flash('msg', "As senhas não conferem");
-        return res.redirect('/perfil-comum');
-      }
-
-      // Armazenar informações do usuário na sessão
-      req.session.email = account.email;
-      req.session.celular = account.celular;
-      req.session.nome = account.nome;
-      req.session.userId = account.id;
-      req.session.sobrenome = account.sobrenome;
-      req.session.userTipo = account.tipo;
-      req.session.logado = true;
-
-      console.log(req.session.userTipo)
-      // Atualizando a sessão
-
-      req.flash('msg', "Logado com sucesso");
-      return res.redirect('/profile'); // Redireciona após o login
-
-    } else {
-      req.flash('msg', "Usuário não encontrado");
-      return res.redirect('/login');
+    // Verifica se os campos foram preenchidos
+    if (!email || !senha) {
+      return res.status(400).json({ message: "Email e senha são obrigatórios" });
     }
 
-  } catch (err) {
-    console.error("Erro na consulta: ", err);
-    return res.status(500).send('Erro interno do servidor');
+    // Busca o usuário no banco de dados
+    const [rows] = await pool.query("SELECT * FROM usuario WHERE email = ? LIMIT 1", [email]);
+
+    // Verifica se o usuário existe
+    if (rows.length === 0) {
+      return res.status(404).json({ message: "Usuário não encontrado" });
+    }
+
+    const user = rows[0];
+
+    // Verifica se a senha está correta
+    const passwordMatch = bcrypt.compareSync(senha, user.senha);
+
+    if (!passwordMatch) {
+      return res.status(401).json({ message: "Senha incorreta" });
+    }
+
+    // Cria uma sessão para o usuário
+    req.session.userid = user.id;
+    req.session.nome = user.nome; // Salvando o nome do usuário
+    req.session.email = user.email;
+    console.log(nome);
+
+
+    // Salva a sessão e redireciona para a página do perfil
+    return req.session.save(() => {
+      res.redirect("/perfil_comum");
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Erro no servidor, tente novamente mais tarde." });
   }
-})
+});
+
 
 router.get("/cadastro", (req, res) => {
   // Renderiza a página de cadastro
@@ -213,9 +206,11 @@ router.get("/pagamento", function (req, res) {
   res.render("pages/pagamento", { pagina: "pagamento", logado: null });
 });
 
-router.get("/perfil_comum", function (req, res) {
-  res.render("pages/perfil_comum", { pagina: "perfil_comum", logado: null });
+router.get("/perfil_comum", async (req, res) => {
+  var nome = req.session.nome;
+  res.render("pages/perfil_comum", { pagina: "perfil_comum", logado: null, nome: nome });
 });
+
 
 router.get("/perfil_prof", function (req, res) {
   res.render("pages/perfil_prof", { pagina: "perfil_prof", logado: null });
