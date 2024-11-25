@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS `blpkdphhphnmf0o8ikdt`.`cursos` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
+select * from cursos
 
 -- -----------------------------------------------------
 -- Table `blpkdphhphnmf0o8ikdt`.`forma de pagamento`
