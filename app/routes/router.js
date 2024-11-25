@@ -3,11 +3,11 @@ const router = express.Router();
 // const usuarioController = require("../controllers/usuarioController");
 const pool = require('../../config/pool_conexoes');
 const {
-    verificarUsuAutenticado,
-    limparSessao,
-    gravarUsuAutenticado,
-    verificarUsuAutorizado,
-} = require("../models/autenticador_middleware"); 
+  verificarUsuAutenticado,
+  limparSessao,
+  gravarUsuAutenticado,
+  verificarUsuAutorizado,
+} = require("../models/autenticador_middleware");
 
 const { usuarioController } = require("../controllers/usuarioController");
 const { carrinhoController } = require("../controllers/carrinhoController");
@@ -28,127 +28,170 @@ const client = new MercadoPagoConfig({
   accessToken: process.env.accessToken
 });
 router.get("/addItem", function (req, res) {
-    carrinhoController.addItem(req, res);
-  });
-  
-  router.get("/removeItem", function (req, res) {
-    carrinhoController.removeItem(req, res);
-  });
-  
-  router.get("/excluirItem", function (req, res) {
-    carrinhoController.excluirItem(req, res);
-  });
-  
-  router.get("/listar-carrinho", function (req, res) {
-    carrinhoController.listarcarrinho(req, res);
-  });
-  router.get(
-    "/perfil",
-    verificarUsuAutorizado([1, 2, 3], "pages/restrito"),
-    async function (req, res) {
-      usuarioController.mostrarPerfil(req, res);
-    }
-  );
-  
-  router.post(
-    "/perfil",
-    uploadFile("imagem-perfil_usu"),
-    usuarioController.regrasValidacaoPerfil,
-    verificarUsuAutorizado([1, 2, 3], "pages/restrito"),
-    async function (req, res) {
-      usuarioController.gravarPerfil(req, res);
-    }
-  );
-  router.get("/", verificarUsuAutenticado, function (req, res) {
-    res.render("pages/index", {
-      autenticado: req.session.autenticado,
-      login: req.session.logado,
-          dadosNotificacao:null
-    });
-  });
-  
-  router.get("/sair", limparSessao, function (req, res) {
-    res.redirect("/");
-  });
-  
-  router.get("/login", function (req, res) {
-    res.render("pages/login", { listaErros: null, dadosNotificacao: null });
-  });
+  carrinhoController.addItem(req, res);
+});
 
-  
-  router.get("/cursosAPI", async function (req, res) {
-   const cursos = await usuarioModel.findAllCursos()
-   return res.json({cursos:cursos})
-  });
-  
-  
-  router.post(
-    "/login",
-    usuarioController.regrasValidacaoFormLogin,
-    gravarUsuAutenticado,
-    function (req, res) {
-      usuarioController.logar(req, res);
-    }
-  );
-  
-  router.get("/cadastro", (req, res) => {
-    // Renderiza a página de cadastro
-    res.render("pages/cadastro", {
-      listaErros: null,  // Não há erros a serem exibidos inicialmente
-      dadosNotificacao: null,  // Não há notificações a serem exibidas
-      valores: { 
-        nome_usu: "",        // Valor inicial para o nome do usuário
-        nomeusu_usu: "",     // Valor inicial para o nome de usuário
-        email_usu: "",       // Valor inicial para o e-mail
-        senha_usu: "",       // Valor inicial para a senha
-        celular_usu: "",     // Valor inicial para o celular (se necessário)
-        tipo_usuario_id_tipo_usuario: "",  // Valor inicial para o tipo de usuário (se aplicável)
-        cursos_id_cursos: "" // Valor inicial para o curso (se aplicável)
-      }
-    });
-  });
+router.get("/removeItem", function (req, res) {
+  carrinhoController.removeItem(req, res);
+});
 
-  router.post("/cadastro", async function (req, res) {
-      usuarioController.cadastrar(req, res);
-    }
-  );
+router.get("/excluirItem", function (req, res) {
+  carrinhoController.excluirItem(req, res);
+});
 
-  router.post("/cadastroCurso", async function (req, res) {
-    usuarioController.cadastrarCurso(req, res);
+router.get("/listar-carrinho", function (req, res) {
+  carrinhoController.listarcarrinho(req, res);
+});
+router.get(
+  "/perfil",
+  verificarUsuAutorizado([1, 2, 3], "pages/restrito"),
+  async function (req, res) {
+    usuarioController.mostrarPerfil(req, res);
   }
 );
-  
-  router.get("/usuarios", async (req, res) => {
-    try {
-      // Buscar todos os usuários do banco de dados
-      const usuarios = await usuarioController.findAll();
-  
-      // Renderizar a página de listagem de usuários
-      res.render("pages/usuarios", { usuarios });  // Passa os dados de usuários para o template
-    } catch (error) {
-      console.error("Erro ao buscar usuários: ", error);
-      res.status(500).send("Erro interno do servidor.");
+
+router.post(
+  "/perfil",
+  uploadFile("imagem-perfil_usu"),
+  usuarioController.regrasValidacaoPerfil,
+  verificarUsuAutorizado([1, 2, 3], "pages/restrito"),
+  async function (req, res) {
+    usuarioController.gravarPerfil(req, res);
+  }
+);
+router.get("/", verificarUsuAutenticado, function (req, res) {
+  res.render("pages/index", {
+    autenticado: req.session.autenticado,
+    login: req.session.logado,
+    dadosNotificacao: null
+  });
+});
+
+router.get("/sair", limparSessao, function (req, res) {
+  res.redirect("/");
+});
+
+router.get("/login", function (req, res) {
+  res.render("pages/login", { listaErros: null, dadosNotificacao: null });
+});
+
+
+router.get("/cursosAPI", async function (req, res) {
+  const cursos = await usuarioModel.findAllCursos()
+  return res.json({ cursos: cursos })
+});
+
+
+router.post(
+  "/login",
+  usuarioController.regrasValidacaoFormLogin,
+  gravarUsuAutenticado,
+  function (req, res) {
+    usuarioController.logar(req, res);
+  }
+);
+
+router.post("/logar", async (req, res) => {
+  const { email, senha } = req.body;
+
+  try {
+    const [accounts] = await connection.query("SELECT * FROM usuario WHERE email = ? LIMIT 1", [email]);
+
+    if (accounts.length > 0) {
+      const account = accounts[0];
+
+      const passwordMatch = await bcrypt.compareSync(senha, account.senha);
+      console.log(passwordMatch)
+
+      if (!passwordMatch) {
+        req.flash('msg', "As senhas não conferem");
+        return res.redirect('/perfil-comum');
+      }
+
+      // Armazenar informações do usuário na sessão
+      req.session.email = account.email;
+      req.session.celular = account.celular;
+      req.session.nome = account.nome;
+      req.session.userId = account.id;
+      req.session.sobrenome = account.sobrenome;
+      req.session.userTipo = account.tipo;
+      req.session.logado = true;
+
+      console.log(req.session.userTipo)
+      // Atualizando a sessão
+
+      req.flash('msg', "Logado com sucesso");
+      return res.redirect('/profile'); // Redireciona após o login
+
+    } else {
+      req.flash('msg', "Usuário não encontrado");
+      return res.redirect('/login');
+    }
+
+  } catch (err) {
+    console.error("Erro na consulta: ", err);
+    return res.status(500).send('Erro interno do servidor');
+  }
+})
+
+router.get("/cadastro", (req, res) => {
+  // Renderiza a página de cadastro
+  res.render("pages/cadastro", {
+    listaErros: null,  // Não há erros a serem exibidos inicialmente
+    dadosNotificacao: null,  // Não há notificações a serem exibidas
+    valores: {
+      nome_usu: "",        // Valor inicial para o nome do usuário
+      nomeusu_usu: "",     // Valor inicial para o nome de usuário
+      email_usu: "",       // Valor inicial para o e-mail
+      senha_usu: "",       // Valor inicial para a senha
+      celular_usu: "",     // Valor inicial para o celular (se necessário)
+      tipo_usuario_id_tipo_usuario: "",  // Valor inicial para o tipo de usuário (se aplicável)
+      cursos_id_cursos: "" // Valor inicial para o curso (se aplicável)
     }
   });
-
-  router.get(
-    "/adm",
-    verificarUsuAutenticado,
-    verificarUsuAutorizado([2, 3], "pages/restrito"),
-    function (req, res) {
-      res.render("pages/adm", req.session.autenticado);
-    }
-  );
-  router.get("/index", function (req, res) {
-    res.render("pages/index", { pagina: "index", logado: null });
 });
- 
+
+router.post("/cadastro", async function (req, res) {
+  usuarioController.cadastrar(req, res);
+}
+);
+
+router.post("/cadastroCurso", async function (req, res) {
+  usuarioController.cadastrarCurso(req, res);
+}
+);
+
+router.get("/usuarios", async (req, res) => {
+  try {
+    // Buscar todos os usuários do banco de dados
+    const usuarios = await usuarioController.findAll();
+
+    // Renderizar a página de listagem de usuários
+    res.render("pages/usuarios", { usuarios });  // Passa os dados de usuários para o template
+  } catch (error) {
+    console.error("Erro ao buscar usuários: ", error);
+    res.status(500).send("Erro interno do servidor.");
+  }
+});
+
+router.get(
+  "/adm",
+  verificarUsuAutenticado,
+  verificarUsuAutorizado([2, 3], "pages/restrito"),
+  function (req, res) {
+    res.render("pages/adm", req.session.autenticado);
+  }
+);
+router.get("/index", function (req, res) {
+  res.render("pages/index", { pagina: "index", logado: null });
+});
+
 router.get("/cursos", function (req, res) {
-    res.render("pages/cursos", { pagina: "cursos", logado: null });
+  res.render("pages/cursos", { pagina: "cursos", logado: null });
 });
 
 router.get("/sobrenos", function (req, res) {
-    res.render("pages/sobrenos", { pagina: "sobrenos", logado: null });
+  res.render("pages/sobrenos", { pagina: "sobrenos", logado: null });
 });
 router.get("/marketing-cursos", function (req, res) {
   res.render("pages/marketing-cursos", { pagina: "marketing-cursos", logado: null });
@@ -201,49 +244,49 @@ router.get("/formcursos", function (req, res) {
   res.render("pages/formcursos", { pagina: "formcursos", logado: null });
 });
 
-    router.get(
-        "/perfil",
-        verificarUsuAutorizado([1, 2, 3], "pages/restrito"),
-        async function (req, res) {
-          usuarioController.mostrarPerfil(req, res);
-        }
-      );
-     
-      router.post(
-        "/perfil",
-        uploadFile("imagem-perfil_usu"),
-        usuarioController.regrasValidacaoPerfil,
-        verificarUsuAutorizado([1, 2, 3], "pages/restrito"),
-        async function (req, res) {
-          usuarioController.gravarPerfil(req, res);
-        }
-      );
-      
-      router.get("/recuperar-senha", verificarUsuAutenticado, function(req, res){
-        res.render("pages/rec-senha",{ listaErros: null, dadosNotificacao: null });
-      });
-      
-      router.post("/recuperar-senha",
-        verificarUsuAutenticado,
-        usuarioController.regrasValidacaoFormRecSenha, 
-        function(req, res){
-          usuarioController.recuperarSenha(req, res);
-      });
-      
-      router.get("/resetar-senha", 
-        function(req, res){
-          usuarioController.validarTokenNovaSenha(req, res);
-        });
-        
-      router.post("/reset-senha", 
-          usuarioController.regrasValidacaoFormNovaSenha,
-          function(req, res){
-          usuarioController.resetarSenha(req, res);
-      });
-        
-      router.get("/formulario", function(req, res){
-        res.render("formulario")
-      });
-  
-  
-  module.exports = router;
+router.get(
+  "/perfil",
+  verificarUsuAutorizado([1, 2, 3], "pages/restrito"),
+  async function (req, res) {
+    usuarioController.mostrarPerfil(req, res);
+  }
+);
+
+router.post(
+  "/perfil",
+  uploadFile("imagem-perfil_usu"),
+  usuarioController.regrasValidacaoPerfil,
+  verificarUsuAutorizado([1, 2, 3], "pages/restrito"),
+  async function (req, res) {
+    usuarioController.gravarPerfil(req, res);
+  }
+);
+
+router.get("/recuperar-senha", verificarUsuAutenticado, function (req, res) {
+  res.render("pages/rec-senha", { listaErros: null, dadosNotificacao: null });
+});
+
+router.post("/recuperar-senha",
+  verificarUsuAutenticado,
+  usuarioController.regrasValidacaoFormRecSenha,
+  function (req, res) {
+    usuarioController.recuperarSenha(req, res);
+  });
+
+router.get("/resetar-senha",
+  function (req, res) {
+    usuarioController.validarTokenNovaSenha(req, res);
+  });
+
+router.post("/reset-senha",
+  usuarioController.regrasValidacaoFormNovaSenha,
+  function (req, res) {
+    usuarioController.resetarSenha(req, res);
+  });
+
+router.get("/formulario", function (req, res) {
+  res.render("formulario")
+});
+
+
+module.exports = router;
