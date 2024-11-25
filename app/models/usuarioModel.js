@@ -5,10 +5,7 @@ const bcrypt = require("bcryptjs");
         findAll: async () => {
             try {
                 const [resultados] = await pool.query( 
-                  "SELECT * FROM blpkdphhphnmf0o8ikdt.usuario; u.id_usuario, u.cpf_usuario, u.email_usuario, " + 
-                  "u.celular_usuario, u.senha_usuario, u.data_nasc_usuario, u.nome_usuario, " +
-                  "FROM usuario u, tipo_usuario t where u.status_usuario = 1 and " +
-                  "u.tipo_usuario = t.id_tipo_usuario"
+                  "SELECT * FROM usuario"
                 )
                 return resultados;
             } catch (error) {
@@ -73,6 +70,20 @@ const bcrypt = require("bcryptjs");
                     "INSERT INTO usuario SET ?", [camposForm]
                 );
                 console.log("Usuário inserido com sucesso!");
+                return resultados;  // Retorna os resultados da query
+            } catch (error) {
+                console.error(error); // Log de erro
+                return null;
+            }
+        },
+
+        createCurso: async (camposForm) => {
+            try {
+                // Inserção no banco de dados
+                const [resultados] = await pool.query(
+                    "INSERT INTO cursos SET ?", [camposForm]
+                );
+                console.log("Curso inserido com sucesso!");
                 return resultados;  // Retorna os resultados da query
             } catch (error) {
                 console.error(error); // Log de erro

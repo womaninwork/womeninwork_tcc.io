@@ -8,31 +8,29 @@
 </head>
 <body>
   <div class="container">
-    <nav class="nav" >
+    <nav class="nav" style="width: 100%; display: flex; justify-content: center; align-items: center;" >
         <a href="/index">
             <img src="imagem/logo2.png"  width="158px" height="60px">
         </a></nav>
     <h1>Criar Novo Curso</h1>
-    <form action="/formcursos" method="post">
+    <form action="/cadastroCurso" method="post">
       <label for="titulo">Título do Curso:</label>
-      <input type="text" id="titulo" name="titulo" required placeholder="Digite o título do curso">
+      <input type="text" id="titulo" name="nome_curso" required placeholder="Digite o título do curso">
 
       <label for="descricao">Descrição do Curso:</label>
-      <textarea id="descricao" name="descricao" required placeholder="Descreva o curso"></textarea>
+      <textarea id="descricao" name="descricao_cursos" required placeholder="Descreva o curso"></textarea>
 
       <label for="categoria">categoria do curso:</label>
-      <textarea id="categoria" name="categoria" required placeholder="Digite a categoria do curso"></textarea>
+      <textarea id="categoria" name="categoria_curso" required placeholder="Digite a categoria do curso"></textarea>
 
       <label for="descricao">Tempo de duração:</label>
-      <textarea id="duração" name="duração" required placeholder="Digite o tempo de duração"></textarea>
+      <textarea id="duração" name="duraco_curso" required placeholder="Digite o tempo de duração"></textarea>
 
 
       <label for="preco">Preço do Curso (R$):</label>
-      <input type="number" id="preco" name="preco" min="0" step="0.01" required placeholder="Ex: 199.99">
-
-      <label for="imagem">Imagem do Curso:</label>
-      <input type="file" id="imagem" name="imagem" accept="image/*" onchange="mostrarImagem()">
-
+      <input type="number" id="preco_curso" name="preco_curso" required placeholder="Ex: 199.99">
+      <label for="preco">Imagem do Curso (R$):</label>
+      <input type="text" id="imagem_curso" name="image"  required placeholder="Ex: url da imagem">
       <button type="submit">Criar Curso</button>
     </form>
 

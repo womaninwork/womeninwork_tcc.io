@@ -147,6 +147,47 @@ cadastrar: async (req, res) => {
           valores: req.body // Retorna os valores do formulário
       });
   }
+},
+cadastrarCurso: async (req, res) => {
+  // Coleta os erros de validação
+  
+
+  // Cria o objeto de dados do formulário (sem criptografar a senha aqui)
+  const dadosForm = {
+      nome_curso: req.body.nome_curso,
+      descricao_cursos: req.body.descricao_cursos,
+      categoria_curso: req.body.categoria_curso,
+      duraco_curso: req.body.duraco_curso,
+      preco_curso: req.body.preco_curso,
+      image: req.body.image,  // senha será criptografada no model
+  };
+
+  try {
+      // Chama o model para criar o novo usuário
+      await usuario.createCurso(dadosForm);
+
+      res.render("pages/cursos", {
+          listaErros: null,
+          dadosNotificacao: {
+              titulo: "Cadastro de curso realizado!",
+              mensagem: "Novo curso criado com sucesso!",
+              tipo: "success"
+          },
+          valores: {}  // Limpa os campos após o sucesso
+      });
+  } catch (e) {
+      console.error(e);
+      // Renderiza a página com erro caso haja algum problema na criação
+      res.render("pages/cadastro", {
+          listaErros: null,
+          dadosNotificacao: {
+              titulo: "Erro ao cadastrar",
+              mensagem: "Ocorreu um erro ao criar o usuário. Tente novamente mais tarde.",
+              tipo: "danger"
+          },
+          valores: req.body // Retorna os valores do formulário
+      });
+  }
 }
 }
  
