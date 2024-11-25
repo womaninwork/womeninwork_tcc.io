@@ -8,11 +8,13 @@
 body {
   width: 100%;
   min-height: 100vh;
-  background: lightpink;
+  background-color: #D3606E; /* HotPink */
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+
 .container {
   background-color: #fafafa;
   border-radius: 10px;
@@ -70,15 +72,22 @@ h2 {
   visibility: hidden;
 }
 
-.form button {
-  background-color: #DB7093;
-  border: 2px solid #DB7093;
-  color: #fff;
+.primary-btn-outline {
+  background-color: #D3606E !important; /* Cor de fundo desejada */
+  border: 2px solid #D3606E !important; /* Borda na mesma cor */
+  color: #fff !important; /* Cor do texto */
   font-size: 14px;
   width: 100%;
   border-radius: 10px;
   padding: 10px;
 }
+
+/* Efeito de hover para o botão */
+.primary-btn-outline:hover {
+  background-color: #53474b;  /* Cor de fundo quando o botão for hover */
+  border-color: #c15a7e;
+}
+
 
 /* Error and Success */
 
