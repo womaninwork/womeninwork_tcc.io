@@ -117,6 +117,17 @@ const bcrypt = require("bcryptjs");
                 return error;
             }
         },
+        findAllCursos: async () => {
+            try {
+                const [resultados] = await pool.query( 
+                  "SELECT * FROM cursos"
+                )
+                return resultados;
+            } catch (error) {
+                console.log(error);
+                return error;  
+            }
+        },
     };
 
     module.exports = usuarioModel

@@ -22,6 +22,7 @@ const perfilController = require("../controllers/perfilController");
 // SDK do Mercado Pago
 const { MercadoPagoConfig, Preference } = require('mercadopago');
 const { pedidoController } = require("../controllers/pedidoController");
+const usuarioModel = require("../models/usuarioModel");
 // Adicione as credenciais
 const client = new MercadoPagoConfig({
   accessToken: process.env.accessToken
@@ -73,6 +74,13 @@ router.get("/addItem", function (req, res) {
   router.get("/login", function (req, res) {
     res.render("pages/login", { listaErros: null, dadosNotificacao: null });
   });
+
+  
+  router.get("/cursosAPI", async function (req, res) {
+   const cursos = await usuarioModel.findAllCursos()
+   return res.json({cursos:cursos})
+  });
+  
   
   router.post(
     "/login",

@@ -125,12 +125,14 @@ nav .close-icon{
 }
 
 .banner {
-    background-image: url(Z:/home_prof/img/home_prof.jpg);
+    background-image: url(imagem/marketingdig.jpg);
     background-repeat: no-repeat;
     background-size: 100%;
     height: 800px;
     border-bottom: 10px solid pink;
 }
+
+
 
 h3.curso_prof{
     font-size: 40px;

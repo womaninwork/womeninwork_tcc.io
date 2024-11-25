@@ -330,6 +330,80 @@
           </section>
       </section>
   </section>
+  <section style="display: flex; width: full; justify-content: center;">
+  <div id="lista-cursos" style="width: full; display: grid;  grid-template-columns: 3; max-width: 1200px;">
+    <div style="padding: 14px; border: 2px solid black; "></div>
+  </div>
+  </section>
+  <script>
+    // Função para obter os cursos da API
+    async function carregarCursos() {
+      try {
+        // Fazendo a requisição para a API /cursosAPI
+        const response = await fetch('/cursosAPI');
+        
+        if (!response.ok) {
+          throw new Error('Falha ao carregar os cursos');
+        }
+
+        // Convertendo a resposta para JSON
+        const data = await response.json();
+
+        // Pegando o div onde os cursos serão exibidos
+        const listaCursosDiv = document.getElementById('lista-cursos');
+
+        // Verificando se a resposta contém cursos
+        if (data.cursos && data.cursos.length > 0) {
+          // Limpando a lista antes de adicionar os cursos
+          listaCursosDiv.innerHTML = '';
+
+          // Loop para exibir cada curso
+          data.cursos.forEach(curso => {
+            // Criando o HTML para cada curso
+            const cursoDiv = document.createElement('div');
+            cursoDiv.classList.add('curso');
+            
+            cursoDiv.innerHTML = `
+            <div style="  width: 300px;
+                height: 450px;
+                margin: 25px;
+                background-color: #fff;
+                border-radius: 20px;
+                overflow: hidden;
+                flex-direction: column;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
+                transition: 0.3s;
+                padding: 10px;">
+              <image style=" min-width: 100%;
+                          width: 100%;
+                          height: 200px;" src=${curso.image} />
+              <div style="display: flex; flex-direction: column; gap: 16px  align-self: flex-start; margin-top: 14pxs">
+              <h2>${curso.nome_curso}</h2>
+              <p><strong>Descrição:</strong> ${curso.descricao_cursos}</p>
+              <p><strong>Preço:</strong> R$ ${curso.preco_curso}</p>
+              <p><strong>Duração curso:</strong> ${curso.duraco_curso}</p>
+              </ div >
+            </div>
+            `;
+            
+            // Adicionando o curso na lista
+            listaCursosDiv.appendChild(cursoDiv);
+          });
+        } else {
+          listaCursosDiv.innerHTML = 'Nenhum curso encontrado.';
+        }
+      } catch (error) {
+        console.error('Erro ao carregar os cursos:', error);
+        document.getElementById('lista-cursos').innerHTML = 'Erro ao carregar os cursos.';
+      }
+    }
+
+    // Carregar os cursos ao carregar a página
+    window.onload = carregarCursos;
+  </script>
 <!--FIM DA AREA CURSOS-->
 
                   <!--INICIO FOOTER-->
