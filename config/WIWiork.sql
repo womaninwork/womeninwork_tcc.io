@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `blpkdphhphnmf0o8ikdt`.`cursos` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-select * from cursos
+
 
 -- -----------------------------------------------------
 -- Table `blpkdphhphnmf0o8ikdt`.`forma de pagamento`
@@ -73,12 +73,15 @@ CREATE TABLE IF NOT EXISTS `blpkdphhphnmf0o8ikdt`.`usuario` (
   `email_usuario` VARCHAR(35) NOT NULL,
   `celular_usuario` CHAR(11) NOT NULL,
   `senha_usuario` VARCHAR(225) NOT NULL,
-  `sobrenome_usuario` VARCHAR(70) NOT NULL
-))
+  `sobrenome_usuario` VARCHAR(70) NOT NULL,
+   `image` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id_usuario`)
+)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 select * from usuario
+ALTER TABLE usuario ADD COLUMN image BLOB
 -- -----------------------------------------------------
 -- Table `blpkdphhphnmf0o8ikdt`.`aluno_tem_cursos`
 -- -----------------------------------------------------

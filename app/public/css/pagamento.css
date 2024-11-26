@@ -85,6 +85,10 @@ body{
   cursor: pointer;
 }
 
+.btn a{
+  color: #fff;
+  text-decoration: none;
+}
 .btn:hover{
     background: #613ba3;
   }
