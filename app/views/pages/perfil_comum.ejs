@@ -101,11 +101,20 @@
   </header>
 
   <div class="container_perfil">
-    <label class="picture" for="picture__input" tabIndex="0">
-      <span class="picture__image"></span>
-    </label>
-    <input type="file" name="picture__input" id="picture__input">
-
+    <form action="/alterImage" method="post" enctype="multipart/form-data">
+      <label class="picture" for="picture__input" tabIndex="0">
+        <span class="picture__image">
+          <!-- Verifica se image está definida e exibe a imagem ou uma padrão -->
+          <img src="/images/default-image.jpg" alt="Imagem de perfil">
+          
+        </label>
+        <br>
+        <img style="height: 150px; width: 150px; border-radius: 50%;" src="<%= 'data:image/jpeg;base64,' + image  %>" alt="Imagem de perfil">
+        <br>
+      <input type="file" name="picture__input" id="picture__input">
+      <input type="submit" value="Alterar">
+    </form>
+    
     <div class="profile-header">
       <h1>
         <%= nome %>

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs")
+const upload = require("../helpers/storage")
 // const usuarioController = require("../controllers/usuarioController");
 const pool = require('../../config/pool_conexoes');
 const {
@@ -88,7 +89,7 @@ router.post("/login", async (req, res) => {
 
   try {
     // Verifica se os campos foram preenchidos
-    if ((email == undefined && senha == undefined )|| ((email == "" || email == " ") && (senha == "" || senha == " "))) {
+    if ((email == undefined && senha == undefined) || ((email == "" || email == " ") && (senha == "" || senha == " "))) {
       return res.status(400).json({ message: "Email e senha são obrigatórios" });
     }
 
@@ -100,8 +101,6 @@ router.post("/login", async (req, res) => {
     }
 
     const user = rows[0];
-    console.log(user)
-
     // Verifica se o campo senha existe no usuário
     if (!user.senha_usuario) {
       return res.status(500).json({ message: "Senha do usuário não encontrada" });
@@ -132,55 +131,55 @@ router.post("/login", async (req, res) => {
 
 router.post("/cadastro", async (req, res) => {
 
-    // Extrai os dados do formulário
-    const { nome, sobrenome, email, celular, senha, confirmPassword } = req.body;
+  // Extrai os dados do formulário
+  const { nome, sobrenome, email, celular, senha, confirmPassword } = req.body;
 
-    // Verifica se as senhas são iguais
-    if (senha !== confirmPassword) {
-        return res.render("pages/cadastro", {
-            listaErros: [{ msg: "As senhas não coincidem" }],
-            valores: req.body // Retorna os dados inseridos pelo usuário
-        });
+  // Verifica se as senhas são iguais
+  if (senha !== confirmPassword) {
+    return res.render("pages/cadastro", {
+      listaErros: [{ msg: "As senhas não coincidem" }],
+      valores: req.body // Retorna os dados inseridos pelo usuário
+    });
+  }
+
+  try {
+    // Verifica se o email já está em uso
+    const [emailExist] = await pool.query("SELECT id_usuario FROM usuario WHERE email_usuario = ?", [email]);
+
+    if (emailExist.length > 0) {
+      return res.render("pages/cadastro", {
+        listaErros: [{ msg: "Email já está em uso." }],
+        valores: req.body // Retorna os dados inseridos pelo usuário
+      });
     }
 
-    try {
-        // Verifica se o email já está em uso
-        const [emailExist] = await pool.query("SELECT id_usuario FROM usuario WHERE email_usuario = ?", [email]);
+    // Criptografa a senha
+    const salt = await bcrypt.genSalt(10); // Gera um salt
+    const hash = await bcrypt.hash(senha, salt); // Criptografa a senha
 
-        if (emailExist.length > 0) {
-            return res.render("pages/cadastro", {
-                listaErros: [{ msg: "Email já está em uso." }],
-                valores: req.body // Retorna os dados inseridos pelo usuário
-            });
-        }
+    // Insere o novo usuário no banco de dados
+    await pool.query(
+      "INSERT INTO usuario (nome_usuario, sobrenome_usuario, email_usuario, celular_usuario, senha_usuario) VALUES (?, ?, ?, ?, ?)",
+      [nome, sobrenome, email, celular, hash]
+    );
 
-        // Criptografa a senha
-        const salt = await bcrypt.genSalt(10); // Gera um salt
-        const hash = await bcrypt.hash(senha, salt); // Criptografa a senha
-
-        // Insere o novo usuário no banco de dados
-        await pool.query(
-            "INSERT INTO usuario (nome_usuario, sobrenome_usuario, email_usuario, celular_usuario, senha_usuario) VALUES (?, ?, ?, ?, ?)",
-            [nome, sobrenome, email, celular, hash]
-        );
-
-        // Redireciona o usuário para a página de login
-        res.render("pages/cadastro", {
-            listaErros: null,
-            dadosNotificacao: {
-                titulo: "Cadastro realizado!",
-                mensagem: "Novo usuário criado com sucesso! Faça o login.",
-                tipo: "success"
-            },
-            valores: {} // Limpa os campos após o sucesso
-        });
-    } catch (e) {
-        console.error(e);
-        res.render("pages/cadastro", {
-            listaErros: [{ msg: "Ocorreu um erro ao cadastrar. Tente novamente mais tarde." }],
-            valores: req.body // Retorna os dados inseridos pelo usuário
-        });
-    }
+    // Redireciona o usuário para a página de login
+    res.render("pages/cadastro", {
+      listaErros: null,
+      dadosNotificacao: {
+        titulo: "Cadastro realizado!",
+        mensagem: "Novo usuário criado com sucesso! Faça o login.",
+        tipo: "success"
+      },
+      valores: {} // Limpa os campos após o sucesso
+    });
+  } catch (e) {
+    console.error(e);
+    res.render("pages/cadastro", {
+      listaErros: [{ msg: "Ocorreu um erro ao cadastrar. Tente novamente mais tarde." }],
+      valores: req.body // Retorna os dados inseridos pelo usuário
+    });
+  }
 });
 
 
@@ -265,8 +264,45 @@ router.get("/pagamento", function (req, res) {
 
 router.get("/perfil_comum", async (req, res) => {
   var nome = req.session.nome;
-  res.render("pages/perfil_comum", { pagina: "perfil_comum", logado: null, nome: nome });
+  const id = req.session.userid;
+
+  // Consulta para pegar a imagem
+  const [rows] = await pool.query("SELECT * FROM usuario WHERE id_usuario = ? LIMIT 1", [id]);
+  if (rows.length > 0) {
+    console.log(rows[0].image)
+    // Acessar o buffer da imagem diretamente
+    const imageBuffer = rows[0].image;
+
+    // Verificar se o buffer existe e converter para Base64
+    const imageBase64 = imageBuffer ? imageBuffer.toString('base64') : null;
+
+    // Passar a imagem para o template EJS
+    res.render("pages/perfil_comum", {
+      pagina: "perfil_comum",
+      logado: null,
+      nome: nome,
+      image: imageBase64,
+    });
+  } else {
+    res.send("Faça login")
+  }
 });
+
+router.post("/alterImage", upload.single("picture__input"), async (req, res) => {
+  if (!req.file) {
+    return res.status(400).send('Nenhum arquivo enviado.');
+  }
+  // Acessando o buffer da imagem
+  const imageBuffer = req.file.buffer;
+  // Fazer algo com o buffer, como salvar no banco de dados
+  console.log('Buffer da imagem:', imageBuffer);
+
+  const id = req.session.userid;
+  console.log(id)
+  await pool.query("UPDATE usuario SET image = ? WHERE id_usuario = ?", [imageBuffer, id])
+
+  res.redirect("/perfil_comum")
+})
 
 
 router.get("/perfil_prof", function (req, res) {
