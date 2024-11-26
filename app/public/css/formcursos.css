@@ -57,6 +57,11 @@ button {
   margin-top: 15px;
 }
 
+button a{
+  color: #fff;
+  text-decoration: none;
+}
+
 button:hover {
   background-color: #D3606E;
 }
